@@ -19,11 +19,11 @@ class SnakeCell {
         this.cellCoordY = cellCoordY;
     }
 
-    int getCellCoordX() {
+    public int getCellCoordX() {
         return this.cellCoordX;
     }
 
-    int getCellCoordY() {
+    public int getCellCoordY() {
         return this.cellCoordY;
     }
 }

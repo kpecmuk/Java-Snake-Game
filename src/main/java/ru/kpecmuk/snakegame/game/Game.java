@@ -10,6 +10,8 @@ import ru.kpecmuk.snakegame.utils.Time;
 
 import java.awt.*;
 
+import static ru.kpecmuk.snakegame.snake.SnakeHeading.moving.*;
+
 /**
  * @author kpecmuk
  * @since 24.10.2017
@@ -18,8 +20,8 @@ import java.awt.*;
 public class Game implements Runnable {
     private static final Logger log = LoggerFactory.getLogger(Game.class);
 
-    private static final int FIELD_X_SIZE = 30;
-    private static final int FIELD_Y_SIZE = 25;
+    public static final int FIELD_X_SIZE = 30;
+    public static final int FIELD_Y_SIZE = 25;
     public static final int CELL_SIZE = 32;
     public static final int CLEAR_COLOR = 0xff_40_40_40;
     public static final int WINDOW_WIDTH = CELL_SIZE * FIELD_X_SIZE + 5;
@@ -33,7 +35,7 @@ public class Game implements Runnable {
     private Time time;
     private static final long IDLE_TIME = 1;
     private static final float UPDATE_RATE = 60.0f;
-    private static long GAME_SPEED = 500_000_000L;
+    private static long GAME_SPEED = 100_000_000L;
 
     private GameField gameField;
     private Snake snake;
@@ -88,9 +90,19 @@ public class Game implements Runnable {
     }
 
     private void update() {
-        apples.check();
+//        apples.check();
+        if (needToMove && !snake.getMovement().canIGoUp()) {
+            snake.getMovement().getHeading().setHeading(RIGHT);
+        } else if (needToMove && !snake.getMovement().canIGoRight()) {
+            snake.getMovement().getHeading().setHeading(DOWN);
+        } else if (needToMove && !snake.getMovement().canIGoDown()) {
+            snake.getMovement().getHeading().setHeading(LEFT);
+        } else if (needToMove && !snake.getMovement().canIGoLeft()) {
+            snake.getMovement().getHeading().setHeading(UP);
+        }
+
         if (needToMove) {
-            snake.getMovement().moveUp();
+            snake.getMovement().moveSnake(snake.getHeading());
             needToMove = false;
         }
     }
@@ -138,8 +150,7 @@ public class Game implements Runnable {
                 }
             }
             if (count >= time.getSecond()) {
-                String title = WINDOW_TITLE + " || fps:" + fps + "  | Upd: " + upd + "  | Loops: " + updateLoops;
-
+                String title = WINDOW_TITLE + " || fps:" + fps + "  | Upd: " + upd + "  | Loops: " + updateLoops + " | " + snake.getMovement().getHeading();
                 display.setWindowTitle(title);
                 count = upd = updateLoops = fps = 0;
             }
