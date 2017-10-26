@@ -35,7 +35,7 @@ public class Game implements Runnable {
     private Time time;
     private static final long IDLE_TIME = 1;
     private static final float UPDATE_RATE = 60.0f;
-    private static long GAME_SPEED = 100_000_000L;
+    private static long GAME_SPEED = 500_000_000L;
 
     private GameField gameField;
     private Snake snake;
@@ -84,7 +84,7 @@ public class Game implements Runnable {
 
         gameField.drawField(graphics);
         apples.drawApples();
-        snake.drawSnake(graphics);
+        snake.drawSnake();
 
         display.swapBuffers();
     }
@@ -150,7 +150,9 @@ public class Game implements Runnable {
                 }
             }
             if (count >= time.getSecond()) {
-                String title = WINDOW_TITLE + " || fps:" + fps + "  | Upd: " + upd + "  | Loops: " + updateLoops + " | " + snake.getMovement().getHeading();
+                String title = WINDOW_TITLE + " || fps:" + fps + "  | Upd: " + upd + "  | Loops: " + updateLoops +
+                        " | " + snake.getMovement().getHeading() + " | " + snake.getSnake().get(0).getCellCoordX() + "  |  " +
+                        snake.getSnake().get(0).getCellCoordY();
                 display.setWindowTitle(title);
                 count = upd = updateLoops = fps = 0;
             }

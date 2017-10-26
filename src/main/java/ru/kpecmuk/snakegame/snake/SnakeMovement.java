@@ -30,31 +30,49 @@ public class SnakeMovement {
 
     public void moveSnake(SnakeHeading snakeHeading) {
 
-        if (this.heading.getHeading().equals(SnakeHeading.moving.UP))
+        if (this.heading.getHeading().equals(SnakeHeading.moving.UP)) {
             goUp();
-        else if (this.heading.getHeading().equals(SnakeHeading.moving.DOWN))
+        } else if (this.heading.getHeading().equals(SnakeHeading.moving.DOWN)) {
             goDown();
-        else if (this.heading.getHeading().equals(SnakeHeading.moving.LEFT))
+        } else if (this.heading.getHeading().equals(SnakeHeading.moving.LEFT)) {
             goLeft();
-        else if (this.heading.getHeading().equals(SnakeHeading.moving.RIGHT))
+        } else if (this.heading.getHeading().equals(SnakeHeading.moving.RIGHT)) {
             goRight();
-        else log.error("Moving to " + snakeHeading.getHeading());
+        } else {
+            log.error("Moving to " + snakeHeading.getHeading());
+        }
     }
 
     public boolean canIGoUp() {
-        return (snake.get(0).getCellCoordY() >= 1);
+        if (snake.get(0).getCellCoordY() >= 0) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     public boolean canIGoLeft() {
-        return (snake.get(0).getCellCoordX() > 3);
+        if (snake.get(0).getCellCoordX() >= 0) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     public boolean canIGoRight() {
-        return (snake.get(0).getCellCoordX() < 20);
+        if (snake.get(0).getCellCoordX() <= FIELD_X_SIZE - 2) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     public boolean canIGoDown() {
-        return (snake.get(0).getCellCoordY() < 20);
+        if (snake.get(0).getCellCoordY() <= FIELD_Y_SIZE - 2) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     private void goDown() {

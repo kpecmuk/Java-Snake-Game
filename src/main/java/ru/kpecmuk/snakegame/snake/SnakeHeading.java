@@ -15,7 +15,7 @@ public class SnakeHeading {
 
     public enum moving {UP, DOWN, LEFT, RIGHT}
 
-    private moving heading = moving.UP;
+    private moving heading = moving.DOWN;
 
     public moving getHeading() {
         return heading;

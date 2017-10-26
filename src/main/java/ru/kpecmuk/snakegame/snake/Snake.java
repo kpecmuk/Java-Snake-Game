@@ -31,15 +31,24 @@ public class Snake extends Convert {
         return heading;
     }
 
+    public ArrayList<SnakeCell> getSnake() {
+        return snake;
+    }
+
+    @Override
+    public String toString() {
+        return snake.get(0).getCellCoordX() + "  |  " + snake.get(0).getCellCoordY();
+    }
+
     public Snake(Graphics2D graphics, int x, int y) {
         this.graphics = graphics;
-        this.heading.setHeading(SnakeHeading.moving.UP);
+        this.heading.setHeading(SnakeHeading.moving.DOWN);
         this.snake.add(new SnakeCell(x, y));
         this.snake.add(new SnakeCell(x - 1, y));
         this.snake.add(new SnakeCell(x - 2, y));
     }
 
-    public void drawSnake(Graphics2D g) {
+    public void drawSnake() {
         for (SnakeCell snakeCell : snake) {
             drawCell(snakeCell.getCellCoordX(), snakeCell.getCellCoordY());
         }

@@ -8,13 +8,13 @@ import org.slf4j.LoggerFactory;
  * @since 25.10.2017
  */
 
-class SnakeCell {
+public class SnakeCell {
     private static final Logger log = LoggerFactory.getLogger(SnakeCell.class);
 
     private final int cellCoordX;
     private final int cellCoordY;
 
-    SnakeCell(int cellCoordX, int cellCoordY) {
+    public SnakeCell(int cellCoordX, int cellCoordY) {
         this.cellCoordX = cellCoordX;
         this.cellCoordY = cellCoordY;
     }
@@ -27,4 +27,3 @@ class SnakeCell {
         return this.cellCoordY;
     }
 }
-    
