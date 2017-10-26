@@ -33,7 +33,7 @@ public class Game implements Runnable {
     private Time time;
     private static final long IDLE_TIME = 1;
     private static final float UPDATE_RATE = 60.0f;
-    private static long gameSpeed = 500_000_000L;
+    private static long GAME_SPEED = 500_000_000L;
 
     private GameField gameField;
     private Snake snake;
@@ -105,7 +105,7 @@ public class Game implements Runnable {
 
         while (isRunning) {
             long currentTime = time.getTime();
-            if (currentTime - moveLastTime > gameSpeed) {
+            if (currentTime - moveLastTime > GAME_SPEED) {
                 needToMove = true;
                 moveLastTime = currentTime;
             }
