@@ -86,6 +86,7 @@ public class Game implements Runnable {
 
     private void update() {
         apples.check();
+        snake.getMovement().moveUp();
     }
 
     @Override

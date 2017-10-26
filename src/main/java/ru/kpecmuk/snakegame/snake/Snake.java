@@ -18,7 +18,16 @@ public class Snake extends Convert {
     private static final Logger log = LoggerFactory.getLogger(Snake.class);
 
     private ArrayList<SnakeCell> snake = new ArrayList<>();
+    private SnakeMovement move = new SnakeMovement(snake);
     private Graphics2D graphics;
+
+    public ArrayList<SnakeCell> getSnakeList() {
+        return this.snake;
+    }
+
+    public SnakeMovement getMovement() {
+        return move;
+    }
 
     public Snake(Graphics2D graphics, int x, int y) {
         this.graphics = graphics;
