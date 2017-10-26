@@ -33,10 +33,13 @@ public class Game implements Runnable {
     private Time time;
     private static final long IDLE_TIME = 1;
     private static final float UPDATE_RATE = 60.0f;
+    private static long gameSpeed = 500_000_000L;
 
     private GameField gameField;
     private Snake snake;
     private Apples apples;
+    private boolean needToMove = false;
+    private long moveLastTime = 0;
 
     public Game(Display display) {
         this.isRunning = false;
@@ -86,7 +89,10 @@ public class Game implements Runnable {
 
     private void update() {
         apples.check();
-        snake.getMovement().moveUp();
+        if (needToMove) {
+            snake.getMovement().moveUp();
+            needToMove = false;
+        }
     }
 
     @Override
@@ -96,9 +102,16 @@ public class Game implements Runnable {
         long count = 0;
 
         long lastTime = time.getTime();
+
         while (isRunning) {
-            long elapsedTime = time.getTime() - lastTime;
-            lastTime = time.getTime();
+            long currentTime = time.getTime();
+            if (currentTime - moveLastTime > gameSpeed) {
+                needToMove = true;
+                moveLastTime = currentTime;
+            }
+
+            long elapsedTime = currentTime - lastTime;
+            lastTime = currentTime;
 
             count += elapsedTime;
             boolean needRender = false;

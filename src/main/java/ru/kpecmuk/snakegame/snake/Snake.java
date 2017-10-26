@@ -32,7 +32,6 @@ public class Snake extends Convert {
     public Snake(Graphics2D graphics, int x, int y) {
         this.graphics = graphics;
 
-
         this.snake.add(new SnakeCell(x, y));
         this.snake.add(new SnakeCell(x - 1, y));
         this.snake.add(new SnakeCell(x - 2, y));
