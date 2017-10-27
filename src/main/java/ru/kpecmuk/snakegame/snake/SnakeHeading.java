@@ -28,4 +28,3 @@ public class SnakeHeading {
         return "Heading: " + heading;
     }
 }
-    

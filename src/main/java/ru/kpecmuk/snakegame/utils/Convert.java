@@ -17,4 +17,3 @@ public class Convert {
         return CELL_SIZE * position + 5;
     }
 }
-    

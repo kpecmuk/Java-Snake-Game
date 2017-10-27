@@ -58,4 +58,3 @@ public class Snake extends Convert {
         graphics.fill3DRect(toPixel(x), toPixel(y), CELL_SIZE - 5, CELL_SIZE - 5, true);
     }
 }
-    
