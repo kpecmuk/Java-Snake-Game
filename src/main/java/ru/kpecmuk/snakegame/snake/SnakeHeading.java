@@ -18,7 +18,7 @@ public class SnakeHeading {
     private moving heading = moving.DOWN;
 
     public moving getHeading() {
-        return heading;
+        return this.heading;
     }
 
     public void setHeading(moving heading) {

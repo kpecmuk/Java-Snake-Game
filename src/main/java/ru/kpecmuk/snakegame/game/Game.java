@@ -35,7 +35,7 @@ public class Game implements Runnable {
     private Time time;
     private static final long IDLE_TIME = 1;
     private static final float UPDATE_RATE = 60.0f;
-    private static long GAME_SPEED = 500_000_000L;
+    private static long GAME_SPEED = 1_100_000_000L;
 
     private GameField gameField;
     private Snake snake;
@@ -92,13 +92,16 @@ public class Game implements Runnable {
     private void update() {
 //        apples.check();
         if (needToMove && !snake.getMovement().canIGoUp()) {
-            snake.getMovement().getHeading().setHeading(RIGHT);
-        } else if (needToMove && !snake.getMovement().canIGoRight()) {
-            snake.getMovement().getHeading().setHeading(DOWN);
-        } else if (needToMove && !snake.getMovement().canIGoDown()) {
-            snake.getMovement().getHeading().setHeading(LEFT);
-        } else if (needToMove && !snake.getMovement().canIGoLeft()) {
-            snake.getMovement().getHeading().setHeading(UP);
+            snake.getHeading().setHeading(RIGHT);
+        }
+        if (needToMove && !snake.getMovement().canIGoRight()) {
+            snake.getHeading().setHeading(DOWN);
+        }
+        if (needToMove && !snake.getMovement().canIGoDown()) {
+            snake.getHeading().setHeading(LEFT);
+        }
+        if (needToMove && !snake.getMovement().canIGoLeft()) {
+            snake.getHeading().setHeading(UP);
         }
 
         if (needToMove) {
@@ -117,10 +120,6 @@ public class Game implements Runnable {
 
         while (isRunning) {
             long currentTime = time.getTime();
-            if (currentTime - moveLastTime > GAME_SPEED) {
-                needToMove = true;
-                moveLastTime = currentTime;
-            }
 
             long elapsedTime = currentTime - lastTime;
             lastTime = currentTime;
@@ -149,10 +148,16 @@ public class Game implements Runnable {
                     log.error(String.valueOf(e));
                 }
             }
+
+            if (currentTime - moveLastTime > GAME_SPEED) {
+                needToMove = true;
+                moveLastTime = currentTime;
+            }
+
             if (count >= time.getSecond()) {
                 String title = WINDOW_TITLE + " || fps:" + fps + "  | Upd: " + upd + "  | Loops: " + updateLoops +
-                        " | " + snake.getMovement().getHeading() + " | " + snake.getSnake().get(0).getCellCoordX() + "  |  " +
-                        snake.getSnake().get(0).getCellCoordY();
+                        " | " + snake.getMovement().getHeading() + " | " + snake.getSnakeCells().get(0).getCellCoordX() + "  |  " +
+                        snake.getSnakeCells().get(0).getCellCoordY();
                 display.setWindowTitle(title);
                 count = upd = updateLoops = fps = 0;
             }

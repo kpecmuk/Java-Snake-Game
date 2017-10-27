@@ -19,7 +19,7 @@ public class SnakeMovement {
     private ArrayList<SnakeCell> snake;
     private SnakeHeading heading;
 
-    SnakeMovement(ArrayList<SnakeCell> snake, SnakeHeading heading) {
+    public SnakeMovement(ArrayList<SnakeCell> snake, SnakeHeading heading) {
         this.snake = snake;
         this.heading = heading;
     }
@@ -44,35 +44,19 @@ public class SnakeMovement {
     }
 
     public boolean canIGoUp() {
-        if (snake.get(0).getCellCoordY() >= 0) {
-            return true;
-        } else {
-            return false;
-        }
+        return snake.get(0).getCellCoordY() != 0;
     }
 
     public boolean canIGoLeft() {
-        if (snake.get(0).getCellCoordX() >= 0) {
-            return true;
-        } else {
-            return false;
-        }
+        return snake.get(0).getCellCoordX() != 0;
     }
 
     public boolean canIGoRight() {
-        if (snake.get(0).getCellCoordX() <= FIELD_X_SIZE - 2) {
-            return true;
-        } else {
-            return false;
-        }
+        return snake.get(0).getCellCoordX() != FIELD_X_SIZE - 1;
     }
 
     public boolean canIGoDown() {
-        if (snake.get(0).getCellCoordY() <= FIELD_Y_SIZE - 2) {
-            return true;
-        } else {
-            return false;
-        }
+        return snake.get(0).getCellCoordY() != FIELD_Y_SIZE - 1;
     }
 
     private void goDown() {
