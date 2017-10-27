@@ -8,8 +8,8 @@ import org.slf4j.LoggerFactory;
  * @since 26.10.2017
  */
 
-public class SnakeDirection {
-    private static final Logger log = LoggerFactory.getLogger(SnakeDirection.class);
+public class Direction {
+    private static final Logger log = LoggerFactory.getLogger(Direction.class);
     private directions direct;
 
     public directions getDirection() {

@@ -17,39 +17,39 @@ import static ru.kpecmuk.snakegame.game.Game.CELL_SIZE;
 public class Snake extends Convert {
     private static final Logger log = LoggerFactory.getLogger(Snake.class);
 
-    private ArrayList<SnakeCell> snakeCells = new ArrayList<>();
-    private SnakeDirection heading = new SnakeDirection();
-    private SnakeMovement movement = new SnakeMovement(this);
+    private ArrayList<Cell> cells = new ArrayList<>();
+    private Direction direction = new Direction();
+    private Movement movement = new Movement(this);
     private Graphics2D graphics;
 
 
-    public SnakeMovement getMovement() {
+    public Snake(Graphics2D graphics, int x, int y) {
+        this.graphics = graphics;
+        this.cells.add(new Cell(x, y));
+        this.cells.add(new Cell(x - 1, y));
+        this.cells.add(new Cell(x - 2, y));
+    }
+
+    public Movement movementObj() {
         return this.movement;
     }
 
-    public SnakeDirection getHeadingObj() {
-        return this.heading;
+    public Direction directionObj() {
+        return this.direction;
     }
 
-    public ArrayList<SnakeCell> getSnakeCells() {
-        return snakeCells;
+    public ArrayList<Cell> getCells() {
+        return cells;
     }
 
     @Override
     public String toString() {
-        return snakeCells.get(0).getCellCoordX() + "  |  " + snakeCells.get(0).getCellCoordY();
-    }
-
-    public Snake(Graphics2D graphics, int x, int y) {
-        this.graphics = graphics;
-        this.snakeCells.add(new SnakeCell(x, y));
-        this.snakeCells.add(new SnakeCell(x - 1, y));
-        this.snakeCells.add(new SnakeCell(x - 2, y));
+        return cells.get(0).getCellCoordX() + "  |  " + cells.get(0).getCellCoordY();
     }
 
     public void drawSnake() {
-        for (SnakeCell snakeCell : snakeCells) {
-            drawCell(snakeCell.getCellCoordX(), snakeCell.getCellCoordY());
+        for (Cell cell : cells) {
+            drawCell(cell.getCellCoordX(), cell.getCellCoordY());
         }
     }
 
