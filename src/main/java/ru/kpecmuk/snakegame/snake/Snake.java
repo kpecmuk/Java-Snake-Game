@@ -19,9 +19,8 @@ public class Snake extends Convert {
 
     private ArrayList<Cell> cells = new ArrayList<>();
     private Direction direction = new Direction();
-    private Movement movement = new Movement(this);
+    private Movement movement = new Movement(cells, direction); // кидаем ссылку на cells & direction чтобы был доступ из movement
     private Graphics2D graphics;
-
 
     public Snake(Graphics2D graphics, int x, int y) {
         this.graphics = graphics;

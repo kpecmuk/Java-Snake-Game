@@ -3,6 +3,8 @@ package ru.kpecmuk.snakegame.snake;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.util.ArrayList;
+
 import static ru.kpecmuk.snakegame.game.Game.FIELD_X_SIZE;
 import static ru.kpecmuk.snakegame.game.Game.FIELD_Y_SIZE;
 
@@ -14,70 +16,73 @@ import static ru.kpecmuk.snakegame.game.Game.FIELD_Y_SIZE;
 public class Movement {
     private static final Logger log = LoggerFactory.getLogger(Movement.class);
 
-    private Snake snake;
+    private ArrayList<Cell> snakeCells;
+    private Direction direction;
 
-    Movement(Snake snake) {
-        this.snake = snake;
+    Movement(ArrayList<Cell> snakeCells, Direction direction) {
+        this.snakeCells = snakeCells;
+        this.direction = direction;
     }
 
     public void moveSnake() {
-        if (snake.directionObj().getDirection().equals(Direction.directions.UP)) {
+        if (direction.getDirection().equals(Direction.directions.UP)) {
             goUp();
         }
-        if (snake.directionObj().getDirection().equals(Direction.directions.DOWN)) {
+        if (direction.getDirection().equals(Direction.directions.DOWN)) {
             goDown();
         }
-        if (snake.directionObj().getDirection().equals(Direction.directions.RIGHT)) {
+        if (direction.getDirection().equals(Direction.directions.RIGHT)) {
             goRight();
         }
-        if (snake.directionObj().getDirection().equals(Direction.directions.LEFT)) {
+        if (direction.getDirection().equals(Direction.directions.LEFT)) {
             goLeft();
         }
 
-        log.info("Moving to " + snake.directionObj().getDirection());
+        log.info("Moving to " + direction.getDirection());
     }
 
     public boolean canIGoUp() {
-        return snake.getCells().get(0).getCellCoordY() > 0;
+        return snakeCells.get(0).getCellCoordY() > 0;
     }
 
     public boolean canIGoLeft() {
-        return snake.getCells().get(0).getCellCoordX() > 0;
+        return snakeCells.get(0).getCellCoordX() > 0;
     }
 
     public boolean canIGoRight() {
-        return snake.getCells().get(0).getCellCoordX() < FIELD_X_SIZE - 1;
+        return snakeCells.get(0).getCellCoordX() < FIELD_X_SIZE - 1;
     }
 
     public boolean canIGoDown() {
-        return snake.getCells().get(0).getCellCoordY() < FIELD_Y_SIZE - 1;
+        return snakeCells.get(0).getCellCoordY() < FIELD_Y_SIZE - 1;
     }
 
     private void goDown() {
-        snake.getCells().add(0, new Cell(snake.getCells().get(0).getCellCoordX(),
-                snake.getCells().get(0).getCellCoordY() + 1));
+
+        snakeCells.add(0, new Cell(snakeCells.get(0).getCellCoordX(),
+                snakeCells.get(0).getCellCoordY() + 1));
         removeTailCell();
     }
 
     private void goUp() {
-        snake.getCells().add(0, new Cell(snake.getCells().get(0).getCellCoordX(),
-                snake.getCells().get(0).getCellCoordY() - 1));
+        snakeCells.add(0, new Cell(snakeCells.get(0).getCellCoordX(),
+                snakeCells.get(0).getCellCoordY() - 1));
         removeTailCell();
     }
 
     private void goLeft() {
-        snake.getCells().add(0, new Cell(snake.getCells().get(0).getCellCoordX() - 1,
-                snake.getCells().get(0).getCellCoordY()));
+        snakeCells.add(0, new Cell(snakeCells.get(0).getCellCoordX() - 1,
+                snakeCells.get(0).getCellCoordY()));
         removeTailCell();
     }
 
     private void goRight() {
-        snake.getCells().add(0, new Cell(snake.getCells().get(0).getCellCoordX() + 1,
-                snake.getCells().get(0).getCellCoordY()));
+        snakeCells.add(0, new Cell(snakeCells.get(0).getCellCoordX() + 1,
+                snakeCells.get(0).getCellCoordY()));
         removeTailCell();
     }
 
     private void removeTailCell() {
-        snake.getCells().remove(snake.getCells().size() - 1);
+        snakeCells.remove(snakeCells.size() - 1);
     }
 }

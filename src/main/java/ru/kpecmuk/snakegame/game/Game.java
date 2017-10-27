@@ -34,7 +34,7 @@ public class Game implements Runnable {
     private Time time;
     private static final long IDLE_TIME = 1;
     private static final float UPDATE_RATE = 60.0f;
-    private static long GAME_SPEED = 50_000_000L;
+    private static long GAME_SPEED = 100_000_000L;
 
     private GameField gameField;
     private Snake snake;
@@ -92,6 +92,23 @@ public class Game implements Runnable {
     private void update() {
         apples.check();
 
+        if (snake.directionObj().getDirection().equals(Direction.directions.UP) && !snake.movementObj().canIGoUp()) {
+            log.info("UP -> RIGHT");
+            snake.directionObj().setDirect(Direction.directions.RIGHT);
+        }
+        if (snake.directionObj().getDirection().equals(Direction.directions.RIGHT) && !snake.movementObj().canIGoRight()) {
+            log.info("RIGHT -> DOWN");
+            snake.directionObj().setDirect(Direction.directions.DOWN);
+        }
+        if (snake.directionObj().getDirection().equals(Direction.directions.DOWN) && !snake.movementObj().canIGoDown()) {
+            log.info("DOWN -> LEFT");
+            snake.directionObj().setDirect(Direction.directions.LEFT);
+        }
+        if (snake.directionObj().getDirection().equals(Direction.directions.LEFT) && !snake.movementObj().canIGoLeft()) {
+            log.info("LEFT -> UP");
+            snake.directionObj().setDirect(Direction.directions.UP);
+        }
+
         if (needToMove) {
             snake.movementObj().moveSnake();
             needToMove = false;
@@ -140,23 +157,6 @@ public class Game implements Runnable {
             if (currentTime - moveLastTime > GAME_SPEED) {
                 needToMove = true;
                 moveLastTime = currentTime;
-
-                if (snake.directionObj().getDirection().equals(Direction.directions.UP) && !snake.movementObj().canIGoUp()) {
-                    log.info("UP -> RIGHT");
-                    snake.directionObj().setDirect(Direction.directions.RIGHT);
-                }
-                if (snake.directionObj().getDirection().equals(Direction.directions.RIGHT) && !snake.movementObj().canIGoRight()) {
-                    log.info("RIGHT -> DOWN");
-                    snake.directionObj().setDirect(Direction.directions.DOWN);
-                }
-                if (snake.directionObj().getDirection().equals(Direction.directions.DOWN) && !snake.movementObj().canIGoDown()) {
-                    log.info("DOWN -> LEFT");
-                    snake.directionObj().setDirect(Direction.directions.LEFT);
-                }
-                if (snake.directionObj().getDirection().equals(Direction.directions.LEFT) && !snake.movementObj().canIGoLeft()) {
-                    log.info("LEFT -> UP");
-                    snake.directionObj().setDirect(Direction.directions.UP);
-                }
             }
 
             if (count >= time.getSecond()) {
