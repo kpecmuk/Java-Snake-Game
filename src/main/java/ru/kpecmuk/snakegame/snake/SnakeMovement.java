@@ -21,20 +21,20 @@ public class SnakeMovement {
     }
 
     public void moveSnake() {
-        if (snake.getHeadingObj().heading().equals(SnakeHeading.moving.UP)) {
+        if (snake.getHeadingObj().getDirection().equals(SnakeDirection.directions.UP)) {
             goUp();
         }
-        if (snake.getHeadingObj().heading().equals(SnakeHeading.moving.DOWN)) {
+        if (snake.getHeadingObj().getDirection().equals(SnakeDirection.directions.DOWN)) {
             goDown();
         }
-        if (snake.getHeadingObj().heading().equals(SnakeHeading.moving.RIGHT)) {
+        if (snake.getHeadingObj().getDirection().equals(SnakeDirection.directions.RIGHT)) {
             goRight();
         }
-        if (snake.getHeadingObj().heading().equals(SnakeHeading.moving.LEFT)) {
+        if (snake.getHeadingObj().getDirection().equals(SnakeDirection.directions.LEFT)) {
             goLeft();
         }
 
-        log.info("Moving to " + snake.getHeadingObj().heading());
+        log.info("Moving to " + snake.getHeadingObj().getDirection());
     }
 
     public boolean canIGoUp() {

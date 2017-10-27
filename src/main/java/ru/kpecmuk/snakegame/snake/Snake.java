@@ -18,7 +18,7 @@ public class Snake extends Convert {
     private static final Logger log = LoggerFactory.getLogger(Snake.class);
 
     private ArrayList<SnakeCell> snakeCells = new ArrayList<>();
-    private SnakeHeading heading = new SnakeHeading();
+    private SnakeDirection heading = new SnakeDirection();
     private SnakeMovement movement = new SnakeMovement(this);
     private Graphics2D graphics;
 
@@ -27,8 +27,8 @@ public class Snake extends Convert {
         return this.movement;
     }
 
-    public SnakeHeading getHeadingObj() {
-        return heading;
+    public SnakeDirection getHeadingObj() {
+        return this.heading;
     }
 
     public ArrayList<SnakeCell> getSnakeCells() {
