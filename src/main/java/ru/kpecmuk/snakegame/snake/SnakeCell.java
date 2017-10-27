@@ -14,7 +14,7 @@ public class SnakeCell {
     private final int cellCoordX;
     private final int cellCoordY;
 
-    public SnakeCell(int cellCoordX, int cellCoordY) {
+    SnakeCell(int cellCoordX, int cellCoordY) {
         this.cellCoordX = cellCoordX;
         this.cellCoordY = cellCoordY;
     }

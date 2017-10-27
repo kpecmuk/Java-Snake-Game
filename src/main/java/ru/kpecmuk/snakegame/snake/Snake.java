@@ -19,7 +19,7 @@ public class Snake extends Convert {
 
     private ArrayList<SnakeCell> snakeCells = new ArrayList<>();
     private SnakeHeading heading = new SnakeHeading();
-    private SnakeMovement movement = new SnakeMovement(snakeCells, heading);
+    private SnakeMovement movement = new SnakeMovement(this);
     private Graphics2D graphics;
 
 
@@ -27,7 +27,7 @@ public class Snake extends Convert {
         return this.movement;
     }
 
-    public SnakeHeading getHeading() {
+    public SnakeHeading getHeadingObj() {
         return heading;
     }
 

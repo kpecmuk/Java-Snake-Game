@@ -3,8 +3,6 @@ package ru.kpecmuk.snakegame.snake;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.security.UnresolvedPermission;
-
 /**
  * @author kpecmuk
  * @since 26.10.2017
@@ -17,7 +15,7 @@ public class SnakeHeading {
 
     private moving heading = moving.DOWN;
 
-    public moving getHeading() {
+    public moving heading() {
         return this.heading;
     }
 

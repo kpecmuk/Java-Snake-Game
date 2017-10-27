@@ -6,11 +6,10 @@ import ru.kpecmuk.snakegame.apple.Apples;
 import ru.kpecmuk.snakegame.graphics.Display;
 import ru.kpecmuk.snakegame.graphics.GameField;
 import ru.kpecmuk.snakegame.snake.Snake;
+import ru.kpecmuk.snakegame.snake.SnakeHeading;
 import ru.kpecmuk.snakegame.utils.Time;
 
 import java.awt.*;
-
-import static ru.kpecmuk.snakegame.snake.SnakeHeading.moving.*;
 
 /**
  * @author kpecmuk
@@ -35,7 +34,7 @@ public class Game implements Runnable {
     private Time time;
     private static final long IDLE_TIME = 1;
     private static final float UPDATE_RATE = 60.0f;
-    private static long GAME_SPEED = 1_100_000_000L;
+    private static long GAME_SPEED = 200_000_000L;
 
     private GameField gameField;
     private Snake snake;
@@ -90,22 +89,10 @@ public class Game implements Runnable {
     }
 
     private void update() {
-//        apples.check();
-        if (needToMove && !snake.getMovement().canIGoUp()) {
-            snake.getHeading().setHeading(RIGHT);
-        }
-        if (needToMove && !snake.getMovement().canIGoRight()) {
-            snake.getHeading().setHeading(DOWN);
-        }
-        if (needToMove && !snake.getMovement().canIGoDown()) {
-            snake.getHeading().setHeading(LEFT);
-        }
-        if (needToMove && !snake.getMovement().canIGoLeft()) {
-            snake.getHeading().setHeading(UP);
-        }
+        apples.check();
 
         if (needToMove) {
-            snake.getMovement().moveSnake(snake.getHeading());
+            snake.getMovement().moveSnake();
             needToMove = false;
         }
     }
@@ -152,11 +139,29 @@ public class Game implements Runnable {
             if (currentTime - moveLastTime > GAME_SPEED) {
                 needToMove = true;
                 moveLastTime = currentTime;
+
+                if (snake.getHeadingObj().heading().equals(SnakeHeading.moving.UP) && !snake.getMovement().canIGoUp()) {
+
+                    log.info("UP -> RIGHT");
+                    snake.getHeadingObj().setHeading(SnakeHeading.moving.RIGHT);
+                }
+                if (snake.getHeadingObj().heading().equals(SnakeHeading.moving.RIGHT) && !snake.getMovement().canIGoRight()) {
+                    log.info("RIGHT -> DOWN");
+                    snake.getHeadingObj().setHeading(SnakeHeading.moving.DOWN);
+                }
+                if (snake.getHeadingObj().heading().equals(SnakeHeading.moving.DOWN) && !snake.getMovement().canIGoDown()) {
+                    log.info("DOWN -> LEFT");
+                    snake.getHeadingObj().setHeading(SnakeHeading.moving.LEFT);
+                }
+                if (snake.getHeadingObj().heading().equals(SnakeHeading.moving.LEFT) && !snake.getMovement().canIGoLeft()) {
+                    log.info("LEFT -> UP");
+                    snake.getHeadingObj().setHeading(SnakeHeading.moving.UP);
+                }
             }
 
             if (count >= time.getSecond()) {
                 String title = WINDOW_TITLE + " || fps:" + fps + "  | Upd: " + upd + "  | Loops: " + updateLoops +
-                        " | " + snake.getMovement().getHeading() + " | " + snake.getSnakeCells().get(0).getCellCoordX() + "  |  " +
+                        " | " + snake.getHeadingObj().heading() + " | " + snake.getSnakeCells().get(0).getCellCoordX() + "  |  " +
                         snake.getSnakeCells().get(0).getCellCoordY();
                 display.setWindowTitle(title);
                 count = upd = updateLoops = fps = 0;
