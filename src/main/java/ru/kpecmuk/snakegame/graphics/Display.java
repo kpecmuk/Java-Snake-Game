@@ -13,6 +13,8 @@ import java.awt.image.DataBufferInt;
 import java.util.Arrays;
 
 /**
+ * Класс грифики
+ *
  * @author kpecmuk
  * @since 24.10.2017
  */

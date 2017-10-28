@@ -10,6 +10,8 @@ import java.util.ArrayList;
 import static ru.kpecmuk.snakegame.game.Game.*;
 
 /**
+ * Движение змейки, проверка на столкновение с границами.
+ *
  * @author kpecmuk
  * @since 26.10.2017
  */

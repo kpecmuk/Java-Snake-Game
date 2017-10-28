@@ -104,9 +104,13 @@ public class Game implements Runnable {
     }
 
     /**
-     * 37 - left / 38 - up / 39 - right / 40 -down
+     * user input codes:
+     * 37 - left
+     * 38 - up
+     * 39 - right
+     * 40 -down
      */
-    private synchronized void update() {
+    private void update() {
         if (!newUserAction) {
             userActionKey = utils.getUserInput().getUserKey();
         }

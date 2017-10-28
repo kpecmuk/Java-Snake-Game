@@ -4,6 +4,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
+ * Кусок змейки
+ *
  * @author kpecmuk
  * @since 25.10.2017
  */

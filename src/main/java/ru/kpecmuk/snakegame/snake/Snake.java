@@ -12,6 +12,8 @@ import java.util.ArrayList;
 import static ru.kpecmuk.snakegame.game.Game.CELL_SIZE;
 
 /**
+ * Основной класс змейки, отрисовка
+ *
  * @author kpecmuk
  * @since 25.10.2017
  */

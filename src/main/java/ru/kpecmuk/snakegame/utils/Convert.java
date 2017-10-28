@@ -6,6 +6,9 @@ import org.slf4j.LoggerFactory;
 import static ru.kpecmuk.snakegame.game.Game.CELL_SIZE;
 
 /**
+ * Конвертор
+ * координат в пиксели
+ *
  * @author kpecmuk
  * @since 25.10.2017
  */

@@ -4,6 +4,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
+ * Системное время
+ *
  * @author kpecmuk
  * @since 24.10.2017
  */

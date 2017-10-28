@@ -5,6 +5,8 @@ import org.slf4j.LoggerFactory;
 import ru.kpecmuk.snakegame.graphics.Display;
 
 /**
+ * Сборник утилит: Time / Convert / UserInput доступно отсюда
+ *
  * @author kpecmuk
  * @since 28.10.2017
  */

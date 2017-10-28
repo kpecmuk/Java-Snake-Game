@@ -5,6 +5,8 @@ import org.slf4j.LoggerFactory;
 import ru.kpecmuk.snakegame.graphics.Display;
 
 /**
+ * Опрос действий игрока
+ *
  * @author kpecmuk
  * @since 28.10.2017
  */

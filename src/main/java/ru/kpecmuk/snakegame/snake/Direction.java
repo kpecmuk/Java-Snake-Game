@@ -4,6 +4,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
+ * Направление / изменение движения змейки
+ *
  * @author kpecmuk
  * @since 26.10.2017
  */

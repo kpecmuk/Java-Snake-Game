@@ -9,6 +9,8 @@ import static ru.kpecmuk.snakegame.game.Game.WINDOW_HEIGHT;
 import static ru.kpecmuk.snakegame.game.Game.WINDOW_WIDTH;
 
 /**
+ * Рисуем игровую сетку
+ *
  * @author kpecmuk
  * @since 25.10.2017
  */
