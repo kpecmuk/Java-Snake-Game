@@ -13,7 +13,6 @@ import static ru.kpecmuk.snakegame.game.Game.*;
  * @author kpecmuk
  * @since 24.10.2017
  */
-
 public class SnakeRunner {
     private static final Logger log = LoggerFactory.getLogger(SnakeRunner.class);
 

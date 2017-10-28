@@ -10,7 +10,6 @@ import ru.kpecmuk.snakegame.graphics.Display;
  * @author kpecmuk
  * @since 28.10.2017
  */
-
 public class Utils {
     private static final Logger log = LoggerFactory.getLogger(Utils.class);
 
