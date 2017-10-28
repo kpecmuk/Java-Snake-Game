@@ -1,4 +1,4 @@
-package ru.kpecmuk.snakegame.game;
+package ru.kpecmuk.snakegame.utils;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -9,12 +9,12 @@ import ru.kpecmuk.snakegame.graphics.Display;
  * @since 28.10.2017
  */
 
-class UserInput {
+public class UserInput {
     private static final Logger log = LoggerFactory.getLogger(UserInput.class);
 
     private Display display;
 
-    UserInput(Display display) {
+    public UserInput(Display display) {
         this.display = display;
     }
 

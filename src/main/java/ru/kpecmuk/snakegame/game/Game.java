@@ -8,6 +8,7 @@ import ru.kpecmuk.snakegame.graphics.GameField;
 import ru.kpecmuk.snakegame.snake.Direction;
 import ru.kpecmuk.snakegame.snake.Snake;
 import ru.kpecmuk.snakegame.utils.Time;
+import ru.kpecmuk.snakegame.utils.UserInput;
 
 import java.awt.*;
 
@@ -98,9 +99,7 @@ public class Game implements Runnable {
         apples.check();
 
         int key = input.getUserKey();
-        if (key != 0) {
-            snake.directionObj().changeDirection(key);
-        }
+        if (key != 0) snake.directionObj().changeDirection(key);
 
         if (snake.directionObj().getDirection().equals(Direction.directions.UP) && !snake.movementObj().canIGoUp()) {
             log.info("UP -> RIGHT");
