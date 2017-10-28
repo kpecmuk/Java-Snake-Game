@@ -101,7 +101,7 @@ public class Game implements Runnable {
         snake.getSnakeCells().add(new SnakeCell(FIELD_X_SIZE / 2, FIELD_Y_SIZE / 2));
 
         applesObj.getApples().clear();
-        applesObj.addNewApple();
+        applesObj.addNewApple(snake.getSnakeCells());
     }
 
     /**
@@ -136,7 +136,7 @@ public class Game implements Runnable {
             log.info(String.valueOf(snake.directionObj().getDirection()));
         } else {
             if (!newUserAction) {
-                log.info(String.valueOf("User action: " + newUserAction));
+//                log.info(String.valueOf("User action: " + newUserAction));
                 if (snake.directionObj().getDirection().equals(Direction.directions.UP) && !snake.movementObj().canIGoUp()) {
                     log.info("UP -> RIGHT");
                     snake.directionObj().setDirect(Direction.directions.RIGHT);
