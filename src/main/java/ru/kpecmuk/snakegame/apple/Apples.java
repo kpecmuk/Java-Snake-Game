@@ -35,11 +35,10 @@ public class Apples extends Convert {
 
     public void addNewApple() {
         Random rand = new Random();
-
         // nextInt is normally exclusive of the top value,
         // so add 1 to make it inclusive
-        int randomX = rand.nextInt((FIELD_X_SIZE) + 1);
-        int randomY = rand.nextInt((FIELD_Y_SIZE) + 1);
+        int randomX = rand.nextInt((FIELD_X_SIZE - 1) + 1);
+        int randomY = rand.nextInt((FIELD_Y_SIZE - 1) + 1);
 
         apples.add(new Apple(randomX, randomY, false));
     }

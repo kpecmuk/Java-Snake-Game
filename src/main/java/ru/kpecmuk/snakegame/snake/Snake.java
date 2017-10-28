@@ -3,7 +3,8 @@ package ru.kpecmuk.snakegame.snake;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import ru.kpecmuk.snakegame.apple.Apples;
-import ru.kpecmuk.snakegame.utils.Convert;
+import ru.kpecmuk.snakegame.game.Game;
+import ru.kpecmuk.snakegame.utils.Utils;
 
 import java.awt.*;
 import java.util.ArrayList;
@@ -15,7 +16,7 @@ import static ru.kpecmuk.snakegame.game.Game.CELL_SIZE;
  * @since 25.10.2017
  */
 
-public class Snake extends Convert {
+public class Snake {
     private static final Logger log = LoggerFactory.getLogger(Snake.class);
 
     private ArrayList<Cell> cells;
@@ -23,9 +24,11 @@ public class Snake extends Convert {
     private Apples applesObj;
     private Movement movement; // кидаем ссылку на cells/direction/applesObj
     private Graphics2D graphics;
+    private Utils utils;
 
-    public Snake(Graphics2D graphics, int x, int y, Apples applesObj) {
-        this.graphics = graphics;
+    public Snake(Game game, int x, int y, Apples applesObj) {
+        this.utils = game.getUtils();
+        this.graphics = game.getDisplay().getGraphics();
         this.applesObj = applesObj;
         this.cells = new ArrayList<>();
         this.cells.add(new Cell(x, y));
@@ -60,6 +63,7 @@ public class Snake extends Convert {
 
     private void drawCell(int x, int y) {
         graphics.setColor(Color.green);
-        graphics.fill3DRect(toPixel(x), toPixel(y), CELL_SIZE - 5, CELL_SIZE - 5, true);
+        graphics.fill3DRect(utils.getConvert().toPixel(x), utils.getConvert().toPixel(y),
+                CELL_SIZE - 5, CELL_SIZE - 5, true);
     }
 }

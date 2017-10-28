@@ -7,8 +7,7 @@ import ru.kpecmuk.snakegame.apple.Apples;
 
 import java.util.ArrayList;
 
-import static ru.kpecmuk.snakegame.game.Game.FIELD_X_SIZE;
-import static ru.kpecmuk.snakegame.game.Game.FIELD_Y_SIZE;
+import static ru.kpecmuk.snakegame.game.Game.*;
 
 /**
  * @author kpecmuk
@@ -72,6 +71,7 @@ public class Movement {
                 log.info("Apple removed");
                 applesObj.addNewApple();
                 log.info("New apple generated");
+                reduceGameSpeed();
                 result = true;
                 break;
             }

@@ -14,7 +14,7 @@ public class UserInput {
 
     private Display display;
 
-    public UserInput(Display display) {
+    UserInput(Display display) {
         this.display = display;
     }
 

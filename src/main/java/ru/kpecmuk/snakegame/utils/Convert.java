@@ -13,7 +13,7 @@ import static ru.kpecmuk.snakegame.game.Game.CELL_SIZE;
 public class Convert {
     private static final Logger log = LoggerFactory.getLogger(Convert.class);
 
-    protected int toPixel(int position) {
+    public int toPixel(int position) {
         return CELL_SIZE * position + 5;
     }
 }

@@ -26,13 +26,13 @@ public class Direction {
     }
 
     public void changeDirection(int key) {
-        if (key == 37 && direct != directions.RIGHT) {  // LEFT
+        if (key == 37) {                    // LEFT
             this.direct = directions.LEFT;
-        } else if (key == 38 && direct != directions.DOWN) {    // UP
+        } else if (key == 38) {             // UP
             this.direct = directions.UP;
-        } else if (key == 39 && direct != directions.LEFT) {    // RIGHT
+        } else if (key == 39) {             // RIGHT
             this.direct = directions.RIGHT;
-        } else if (key == 40 && direct != directions.UP) {      // DOWN
+        } else if (key == 40) {             // DOWN
             this.direct = directions.DOWN;
         }
     }
