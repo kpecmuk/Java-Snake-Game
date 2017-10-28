@@ -5,6 +5,8 @@ import org.slf4j.LoggerFactory;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.awt.image.BufferStrategy;
 import java.awt.image.BufferedImage;
 import java.awt.image.DataBufferInt;
@@ -26,6 +28,7 @@ public class Display {
     private Graphics graphicsBuffer;
     private BufferStrategy bufferStrategy;
     private JFrame window;
+    private int key = 0;
 
     public Display(int windowWidth, int windowHeight, int clearColor, int numBuffers, String windowTitle) {
         this.windowWidth = windowWidth;
@@ -34,6 +37,10 @@ public class Display {
         this.numBuffers = numBuffers;
         this.windowTitle = windowTitle;
         this.isCreated = false;
+    }
+
+    public int getUserKey() {
+        return this.key;
     }
 
     public Graphics2D getGraphics() {
@@ -50,6 +57,11 @@ public class Display {
 
         Canvas content = new Canvas();
         content.setPreferredSize(size);
+        window.addKeyListener(new KeyAdapter() {
+            public void keyPressed(KeyEvent e) {
+                key = e.getKeyCode();
+            }
+        });
 
         window.setResizable(false);
         window.getContentPane().add(content);
@@ -85,5 +97,9 @@ public class Display {
 
     public void clear() {
         Arrays.fill(bufferData, clearColor);
+    }
+
+    public void clearUserKey() {
+        this.key = 0;
     }
 }

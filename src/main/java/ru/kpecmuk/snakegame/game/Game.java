@@ -41,11 +41,13 @@ public class Game implements Runnable {
     private Apples apples;
     private boolean needToMove = false;
     private long moveLastTime = 0;
+    private UserInput input;
 
     public Game(Display display) {
         this.isRunning = false;
         this.display = display;
         this.display.createWindow();
+        this.input = new UserInput(display);
         this.graphics = display.getGraphics();
         this.time = new Time();
         this.gameField = new GameField();
@@ -89,8 +91,16 @@ public class Game implements Runnable {
         display.swapBuffers();
     }
 
+    /**
+     * 37 - left / 38 - up / 39 - right / 40 -down
+     */
     private void update() {
         apples.check();
+
+        int key = input.getUserKey();
+        if (key != 0) {
+            snake.directionObj().changeDirection(key);
+        }
 
         if (snake.directionObj().getDirection().equals(Direction.directions.UP) && !snake.movementObj().canIGoUp()) {
             log.info("UP -> RIGHT");

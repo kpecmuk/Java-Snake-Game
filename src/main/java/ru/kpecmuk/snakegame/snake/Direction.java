@@ -25,5 +25,17 @@ public class Direction {
         return "Heading: " + direct;
     }
 
+    public void changeDirection(int key) {
+        if (key == 37 && direct != directions.RIGHT) {  // LEFT
+            this.direct = directions.LEFT;
+        } else if (key == 38 && direct != directions.DOWN) {    // UP
+            this.direct = directions.UP;
+        } else if (key == 39 && direct != directions.LEFT) {    // RIGHT
+            this.direct = directions.RIGHT;
+        } else if (key == 40 && direct != directions.UP) {      // DOWN
+            this.direct = directions.DOWN;
+        }
+    }
+
     public enum directions {UP, DOWN, LEFT, RIGHT}
 }
