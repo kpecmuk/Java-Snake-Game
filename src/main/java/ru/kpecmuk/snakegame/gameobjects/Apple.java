@@ -15,4 +15,3 @@ public class Apple extends Coordinates {
         super(coordX, coordY);
     }
 }
-    

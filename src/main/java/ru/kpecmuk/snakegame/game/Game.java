@@ -3,6 +3,7 @@ package ru.kpecmuk.snakegame.game;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import ru.kpecmuk.snakegame.apple.Apples;
+import ru.kpecmuk.snakegame.gameobjects.SnakeCell;
 import ru.kpecmuk.snakegame.graphics.Display;
 import ru.kpecmuk.snakegame.graphics.GameField;
 import ru.kpecmuk.snakegame.snake.Direction;
@@ -17,8 +18,6 @@ import java.awt.*;
  */
 
 public class Game implements Runnable {
-    private static final Logger log = LoggerFactory.getLogger(Game.class);
-
     public static final int FIELD_X_SIZE = 30;
     public static final int FIELD_Y_SIZE = 25;
     public static final int CELL_SIZE = 32;
@@ -27,13 +26,14 @@ public class Game implements Runnable {
     public static final int WINDOW_HEIGHT = CELL_SIZE * FIELD_Y_SIZE + 5;
     public static final String WINDOW_TITLE = "SnakeCell";
     public static final int NUMBER_OF_BUFFERS = 3;
+    private static final Logger log = LoggerFactory.getLogger(Game.class);
+    private static final long IDLE_TIME = 1;
+    private static final float UPDATE_RATE = 60.0f;
+    private static long GAME_SPEED = 300_000_000L;
     private boolean isRunning;
     private Display display;
     private Graphics2D graphics;
     private Thread gameThread;
-    private static long GAME_SPEED = 300_000_000L;
-    private static final long IDLE_TIME = 1;
-    private static final float UPDATE_RATE = 60.0f;
     private Utils utils;
     private boolean newUserAction = false;
 
@@ -93,6 +93,22 @@ public class Game implements Runnable {
         display.destroyWindow();
     }
 
+    /**
+     * Обнуляем списки объектов и начинаем игру заново
+     */
+    public void doGameOver() {
+        snake.getSnakeCells().clear();
+        snake.getSnakeCells().add(new SnakeCell(FIELD_X_SIZE / 2, FIELD_Y_SIZE / 2));
+
+        applesObj.getApples().clear();
+        applesObj.addNewApple();
+    }
+
+    /**
+     * Отрисовываем объекты в буфере экрана.
+     * Очищаем, рисуем сетку, рисуем яблоки, рисуем змейку.
+     * Затем переключаем буфер и его содержимое показывается на экране.
+     */
     private void doRender() {
         display.clear();
 

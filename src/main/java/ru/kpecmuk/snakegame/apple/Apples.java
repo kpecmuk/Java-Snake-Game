@@ -13,15 +13,15 @@ import java.util.Random;
 import static ru.kpecmuk.snakegame.game.Game.*;
 
 /**
- * Тут будет список с яблоками
- *
  * @author kpecmuk
  * @since 25.10.2017
  */
-
 public class Apples {
     private static final Logger log = LoggerFactory.getLogger(Apples.class);
 
+    /**
+     * Список яблок
+     */
     private ArrayList<Apple> apples;
     private Graphics2D graphics;
     private Utils utils;
@@ -33,26 +33,42 @@ public class Apples {
         this.apples.add(new Apple(coordX, coordY));
     }
 
+    /**
+     * Для доступа к экземпляру из вне
+     *
+     * @return список с яблоками
+     */
     public ArrayList<Apple> getApples() {
         return this.apples;
     }
 
+    /**
+     * Генерация нового яблока
+     */
     public void addNewApple() {
         Random rand = new Random();
-        // nextInt is normally exclusive of the top value,
-        // so add 1 to make it inclusive
         int randomX = rand.nextInt((FIELD_X_SIZE - 1) + 1);
         int randomY = rand.nextInt((FIELD_Y_SIZE - 1) + 1);
 
         apples.add(new Apple(randomX, randomY));
     }
 
+    /**
+     * Отрисовка яблок согласно списку
+     * Координаты получаем из списка
+     */
     public void drawApples() {
         for (Apple apple : apples) {
             drawApple(apple.getCoordX(), apple.getCoordY());
         }
     }
 
+    /**
+     * Отрисовка яблока по координатам
+     *
+     * @param x координата для перевода её в пиксели на экране
+     * @param y координата для перевода её в пиксели на экране
+     */
     private void drawApple(int x, int y) {
         graphics.setColor(Color.RED);
         graphics.fill3DRect(utils.getConvert().toPixel(x), utils.getConvert().toPixel(y),

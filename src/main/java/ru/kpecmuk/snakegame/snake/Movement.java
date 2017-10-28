@@ -16,7 +16,6 @@ import static ru.kpecmuk.snakegame.game.Game.*;
  * @author kpecmuk
  * @since 26.10.2017
  */
-
 public class Movement {
     private static final Logger log = LoggerFactory.getLogger(Movement.class);
 
@@ -30,6 +29,9 @@ public class Movement {
         this.applesObj = applesObj;
     }
 
+    /**
+     * Двигаем змейкку. Берём направление и двигаем.
+     */
     public void moveSnake() {
         if (direction.getDirection().equals(Direction.directions.UP)) {
             goUp();
@@ -47,22 +49,41 @@ public class Movement {
         log.info("Moving to " + direction.getDirection());
     }
 
+    /**
+     * @return если можно двигаться вверх
+     */
     public boolean canIGoUp() {
         return snakeCells.get(0).getCoordY() > 0;
     }
 
+    /**
+     * @return если можно двигаться влево
+     */
     public boolean canIGoLeft() {
         return snakeCells.get(0).getCoordX() > 0;
     }
 
+    /**
+     * @return если можно двигаться вправо
+     */
     public boolean canIGoRight() {
         return snakeCells.get(0).getCoordX() < FIELD_X_SIZE - 1;
     }
 
+    /**
+     * @return если можно двигаться вниз
+     */
     public boolean canIGoDown() {
         return snakeCells.get(0).getCoordY() < FIELD_Y_SIZE - 1;
     }
 
+    /**
+     * Проверка не нашли ли яблоко.
+     * Если нашли то удаляем и генерируем новое
+     * TODO: сделать проверку чтобы яблоко было вне змейки
+     *
+     * @return true если нашли
+     */
     private boolean appleFoundCheck() {
         boolean result = false;
 
@@ -82,6 +103,9 @@ public class Movement {
         return result;
     }
 
+    /**
+     * Двигаемся вниз
+     */
     private void goDown() {
         snakeCells.add(0, new SnakeCell(snakeCells.get(0).getCoordX(),
                 snakeCells.get(0).getCoordY() + 1));
@@ -90,6 +114,9 @@ public class Movement {
         }
     }
 
+    /**
+     * Двигаемся вверх
+     */
     private void goUp() {
         snakeCells.add(0, new SnakeCell(snakeCells.get(0).getCoordX(),
                 snakeCells.get(0).getCoordY() - 1));
@@ -98,6 +125,9 @@ public class Movement {
         }
     }
 
+    /**
+     * Двигаемся влево
+     */
     private void goLeft() {
         snakeCells.add(0, new SnakeCell(snakeCells.get(0).getCoordX() - 1,
                 snakeCells.get(0).getCoordY()));
@@ -106,6 +136,9 @@ public class Movement {
         }
     }
 
+    /**
+     * Двигаемся вправо
+     */
     private void goRight() {
         snakeCells.add(0, new SnakeCell(snakeCells.get(0).getCoordX() + 1,
                 snakeCells.get(0).getCoordY()));
@@ -114,6 +147,9 @@ public class Movement {
         }
     }
 
+    /**
+     * Удаляем хвост
+     */
     private void removeTailCell() {
         snakeCells.remove(snakeCells.size() - 1);
     }

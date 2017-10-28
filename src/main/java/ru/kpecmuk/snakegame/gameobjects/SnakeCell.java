@@ -4,6 +4,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
+ * Звено змейки, содержащее координаты объектов
+ *
  * @author kpecmuk
  * @since 28.10.2017
  */
