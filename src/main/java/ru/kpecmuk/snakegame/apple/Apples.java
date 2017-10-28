@@ -6,8 +6,9 @@ import ru.kpecmuk.snakegame.utils.Convert;
 
 import java.awt.*;
 import java.util.ArrayList;
+import java.util.Random;
 
-import static ru.kpecmuk.snakegame.game.Game.CELL_SIZE;
+import static ru.kpecmuk.snakegame.game.Game.*;
 
 /**
  * Тут будет список с яблоками
@@ -33,14 +34,19 @@ public class Apples extends Convert {
     }
 
     public void addNewApple() {
+        Random rand = new Random();
 
+        // nextInt is normally exclusive of the top value,
+        // so add 1 to make it inclusive
+        int randomX = rand.nextInt((FIELD_X_SIZE) + 1);
+        int randomY = rand.nextInt((FIELD_Y_SIZE) + 1);
 
-//        apples.add(new Apple(coordX, coordY, false));
+        apples.add(new Apple(randomX, randomY, false));
     }
 
     public void drawApples() {
         for (Apple apple : apples) {
-                drawApple(apple.getAppleCoordX(), apple.getAppleCoordY());
+            drawApple(apple.getAppleCoordX(), apple.getAppleCoordY());
         }
     }
 

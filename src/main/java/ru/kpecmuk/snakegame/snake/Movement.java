@@ -67,8 +67,11 @@ public class Movement {
         for (Apple apple : applesObj.getApples()) {
             if (apple.getAppleCoordX() == snakeCells.get(0).getCellCoordX()
                     && apple.getAppleCoordY() == snakeCells.get(0).getCellCoordY()) {
-                applesObj.getApples().remove(apple);
                 log.info("Apple found");
+                applesObj.getApples().remove(apple);
+                log.info("Apple removed");
+                applesObj.addNewApple();
+                log.info("New apple generated");
                 result = true;
                 break;
             }
