@@ -19,12 +19,17 @@ import static ru.kpecmuk.snakegame.game.Game.CELL_SIZE;
 public class Apples extends Convert {
     private static final Logger log = LoggerFactory.getLogger(Apples.class);
 
-    private ArrayList<Apple> apples = new ArrayList<>();
+    private ArrayList<Apple> apples;
     private Graphics2D graphics;
 
     public Apples(Graphics2D graphics, int coordX, int coordY) {
         this.graphics = graphics;
-        apples.add(new Apple(coordX, coordY, false));
+        this.apples = new ArrayList<>();
+        this.apples.add(new Apple(coordX, coordY, false));
+    }
+
+    public ArrayList<Apple> getApples() {
+        return this.apples;
     }
 
     public void addNewApple() {
@@ -35,9 +40,7 @@ public class Apples extends Convert {
 
     public void drawApples() {
         for (Apple apple : apples) {
-            if (!apple.isEaten()) {
                 drawApple(apple.getAppleCoordX(), apple.getAppleCoordY());
-            }
         }
     }
 
@@ -52,21 +55,5 @@ public class Apples extends Convert {
 
     public int getCoordY(Apple apple) {
         return apple.getAppleCoordY();
-    }
-
-    public boolean isEaten(Apple apple) {
-        return apple.isEaten();
-    }
-
-    public void eatApple(Apple apple) {
-        apple.setEaten(true);
-    }
-
-    public void check() {
-        for (Apple apple : apples) {
-            if (apple.isEaten()) {
-                apples.remove(apple);
-            }
-        }
     }
 }

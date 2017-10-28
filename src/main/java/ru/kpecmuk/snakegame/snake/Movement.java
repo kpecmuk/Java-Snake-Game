@@ -2,6 +2,8 @@ package ru.kpecmuk.snakegame.snake;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import ru.kpecmuk.snakegame.apple.Apple;
+import ru.kpecmuk.snakegame.apple.Apples;
 
 import java.util.ArrayList;
 
@@ -18,10 +20,12 @@ public class Movement {
 
     private ArrayList<Cell> snakeCells;
     private Direction direction;
+    private Apples applesObj;
 
-    Movement(ArrayList<Cell> snakeCells, Direction direction) {
+    Movement(ArrayList<Cell> snakeCells, Direction direction, Apples applesObj) {
         this.snakeCells = snakeCells;
         this.direction = direction;
+        this.applesObj = applesObj;
     }
 
     public void moveSnake() {
@@ -57,29 +61,51 @@ public class Movement {
         return snakeCells.get(0).getCellCoordY() < FIELD_Y_SIZE - 1;
     }
 
-    private void goDown() {
+    private boolean appleFoundCheck() {
+        boolean result = false;
 
+        for (Apple apple : applesObj.getApples()) {
+            if (apple.getAppleCoordX() == snakeCells.get(0).getCellCoordX()
+                    && apple.getAppleCoordY() == snakeCells.get(0).getCellCoordY()) {
+                applesObj.getApples().remove(apple);
+                log.info("Apple found");
+                result = true;
+                break;
+            }
+        }
+        return result;
+    }
+
+    private void goDown() {
         snakeCells.add(0, new Cell(snakeCells.get(0).getCellCoordX(),
                 snakeCells.get(0).getCellCoordY() + 1));
-        removeTailCell();
+        if (!appleFoundCheck()) {
+            removeTailCell();
+        }
     }
 
     private void goUp() {
         snakeCells.add(0, new Cell(snakeCells.get(0).getCellCoordX(),
                 snakeCells.get(0).getCellCoordY() - 1));
-        removeTailCell();
+        if (!appleFoundCheck()) {
+            removeTailCell();
+        }
     }
 
     private void goLeft() {
         snakeCells.add(0, new Cell(snakeCells.get(0).getCellCoordX() - 1,
                 snakeCells.get(0).getCellCoordY()));
-        removeTailCell();
+        if (!appleFoundCheck()) {
+            removeTailCell();
+        }
     }
 
     private void goRight() {
         snakeCells.add(0, new Cell(snakeCells.get(0).getCellCoordX() + 1,
                 snakeCells.get(0).getCellCoordY()));
-        removeTailCell();
+        if (!appleFoundCheck()) {
+            removeTailCell();
+        }
     }
 
     private void removeTailCell() {

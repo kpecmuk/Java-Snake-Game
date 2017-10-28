@@ -39,7 +39,7 @@ public class Game implements Runnable {
 
     private GameField gameField;
     private Snake snake;
-    private Apples apples;
+    private Apples applesObj;
     private boolean needToMove = false;
     private long moveLastTime = 0;
     private UserInput input;
@@ -52,9 +52,10 @@ public class Game implements Runnable {
         this.graphics = display.getGraphics();
         this.time = new Time();
         this.gameField = new GameField();
-        this.snake = new Snake(this.graphics, FIELD_X_SIZE / 2, FIELD_Y_SIZE / 2);
+        this.applesObj = new Apples(this.graphics, FIELD_X_SIZE / 4, FIELD_Y_SIZE / 4);
+        this.snake = new Snake(this.graphics, FIELD_X_SIZE / 2, FIELD_Y_SIZE / 2, applesObj);
         this.snake.directionObj().setDirect(Direction.directions.UP);
-        this.apples = new Apples(this.graphics, FIELD_X_SIZE / 4, FIELD_Y_SIZE / 4);
+
     }
 
     public synchronized void startGame() {
@@ -86,7 +87,7 @@ public class Game implements Runnable {
         display.clear();
 
         gameField.drawField(graphics);
-        apples.drawApples();
+        applesObj.drawApples();
         snake.drawSnake();
 
         display.swapBuffers();
@@ -96,7 +97,7 @@ public class Game implements Runnable {
      * 37 - left / 38 - up / 39 - right / 40 -down
      */
     private void update() {
-        apples.check();
+//        applesObj.removeEatenApples();
 
         int key = input.getUserKey();
         if (key != 0) snake.directionObj().changeDirection(key);

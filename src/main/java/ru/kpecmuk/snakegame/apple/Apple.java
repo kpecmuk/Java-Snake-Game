@@ -11,31 +11,22 @@ import org.slf4j.LoggerFactory;
  * @since 25.10.2017
  */
 
-class Apple {
+public class Apple {
     private static final Logger log = LoggerFactory.getLogger(Apple.class);
 
     private int appleCoordX;
     private int appleCoordY;
-    private boolean isEaten;
-
-    boolean isEaten() {
-        return this.isEaten;
-    }
-
-    void setEaten(boolean eaten) {
-        this.isEaten = eaten;
-    }
 
     Apple(int appleCoordX, int appleCoordY, boolean b) {
         this.appleCoordX = appleCoordX;
         this.appleCoordY = appleCoordY;
     }
 
-    int getAppleCoordX() {
+    public int getAppleCoordX() {
         return this.appleCoordX;
     }
 
-    int getAppleCoordY() {
+    public int getAppleCoordY() {
         return this.appleCoordY;
     }
 }
