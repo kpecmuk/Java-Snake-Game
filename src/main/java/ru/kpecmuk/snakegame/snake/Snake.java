@@ -4,6 +4,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import ru.kpecmuk.snakegame.apple.Apples;
 import ru.kpecmuk.snakegame.game.Game;
+import ru.kpecmuk.snakegame.gameobjects.SnakeCell;
 import ru.kpecmuk.snakegame.utils.Utils;
 
 import java.awt.*;
@@ -21,7 +22,7 @@ import static ru.kpecmuk.snakegame.game.Game.CELL_SIZE;
 public class Snake {
     private static final Logger log = LoggerFactory.getLogger(Snake.class);
 
-    private ArrayList<Cell> cells;
+    private ArrayList<SnakeCell> snakeCells;
     private Direction direction;
     private Apples applesObj;
     private Movement movement; // кидаем ссылку на cells/direction/applesObj
@@ -32,12 +33,14 @@ public class Snake {
         this.utils = game.getUtils();
         this.graphics = game.getDisplay().getGraphics();
         this.applesObj = applesObj;
-        this.cells = new ArrayList<>();
-        this.cells.add(new Cell(x, y));
-        this.cells.add(new Cell(x - 1, y));
-        this.cells.add(new Cell(x - 2, y));
+
+        this.snakeCells = new ArrayList<>();
+        this.snakeCells.add(new SnakeCell(x, y));
+        this.snakeCells.add(new SnakeCell(x - 1, y));
+        this.snakeCells.add(new SnakeCell(x - 2, y));
+
         this.direction = new Direction();
-        this.movement = new Movement(cells, direction, this.applesObj);
+        this.movement = new Movement(snakeCells, direction, this.applesObj);
     }
 
     public Movement movementObj() {
@@ -48,18 +51,18 @@ public class Snake {
         return this.direction;
     }
 
-    public ArrayList<Cell> getCells() {
-        return cells;
+    public ArrayList<SnakeCell> getSnakeCells() {
+        return snakeCells;
     }
 
     @Override
     public String toString() {
-        return cells.get(0).getCellCoordX() + "  |  " + cells.get(0).getCellCoordY();
+        return snakeCells.get(0).getCoordX() + "  |  " + snakeCells.get(0).getCoordY();
     }
 
     public void drawSnake() {
-        for (Cell cell : cells) {
-            drawCell(cell.getCellCoordX(), cell.getCellCoordY());
+        for (SnakeCell cell : snakeCells) {
+            drawCell(cell.getCoordX(), cell.getCoordY());
         }
     }
 

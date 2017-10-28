@@ -25,7 +25,7 @@ public class Game implements Runnable {
     public static final int CLEAR_COLOR = 0xff_40_40_40;
     public static final int WINDOW_WIDTH = CELL_SIZE * FIELD_X_SIZE + 5;
     public static final int WINDOW_HEIGHT = CELL_SIZE * FIELD_Y_SIZE + 5;
-    public static final String WINDOW_TITLE = "Snake";
+    public static final String WINDOW_TITLE = "SnakeCell";
     public static final int NUMBER_OF_BUFFERS = 3;
     private boolean isRunning;
     private Display display;
@@ -51,7 +51,7 @@ public class Game implements Runnable {
         this.utils = new Utils(display);
         this.graphics = display.getGraphics();
         this.gameField = new GameField();
-        this.applesObj = new Apples(this.graphics, FIELD_X_SIZE / 4, FIELD_Y_SIZE / 4);
+        this.applesObj = new Apples(this, FIELD_X_SIZE / 4, FIELD_Y_SIZE / 4);
         this.snake = new Snake(this, FIELD_X_SIZE / 2, FIELD_Y_SIZE / 2, applesObj);
         this.snake.directionObj().setDirect(Direction.directions.UP);
     }
@@ -196,8 +196,8 @@ public class Game implements Runnable {
 
             if (count >= utils.getTime().getSecond()) {
                 String title = WINDOW_TITLE + " || fps:" + fps + "  | Upd: " + upd + "  | Loops: " + updateLoops +
-                        " | " + snake.directionObj().getDirection() + " | " + snake.getCells().get(0).getCellCoordX() + "  |  " +
-                        snake.getCells().get(0).getCellCoordY();
+                        " | " + snake.directionObj().getDirection() + " | " + snake.getSnakeCells().get(0).getCoordX() + "  |  " +
+                        snake.getSnakeCells().get(0).getCoordY();
                 display.setWindowTitle(title);
                 count = upd = updateLoops = fps = 0;
             }

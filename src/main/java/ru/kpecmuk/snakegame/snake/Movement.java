@@ -2,8 +2,9 @@ package ru.kpecmuk.snakegame.snake;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import ru.kpecmuk.snakegame.apple.Apple;
 import ru.kpecmuk.snakegame.apple.Apples;
+import ru.kpecmuk.snakegame.gameobjects.Apple;
+import ru.kpecmuk.snakegame.gameobjects.SnakeCell;
 
 import java.util.ArrayList;
 
@@ -19,11 +20,11 @@ import static ru.kpecmuk.snakegame.game.Game.*;
 public class Movement {
     private static final Logger log = LoggerFactory.getLogger(Movement.class);
 
-    private ArrayList<Cell> snakeCells;
+    private ArrayList<SnakeCell> snakeCells;
     private Direction direction;
     private Apples applesObj;
 
-    Movement(ArrayList<Cell> snakeCells, Direction direction, Apples applesObj) {
+    Movement(ArrayList<SnakeCell> snakeCells, Direction direction, Apples applesObj) {
         this.snakeCells = snakeCells;
         this.direction = direction;
         this.applesObj = applesObj;
@@ -47,27 +48,27 @@ public class Movement {
     }
 
     public boolean canIGoUp() {
-        return snakeCells.get(0).getCellCoordY() > 0;
+        return snakeCells.get(0).getCoordY() > 0;
     }
 
     public boolean canIGoLeft() {
-        return snakeCells.get(0).getCellCoordX() > 0;
+        return snakeCells.get(0).getCoordX() > 0;
     }
 
     public boolean canIGoRight() {
-        return snakeCells.get(0).getCellCoordX() < FIELD_X_SIZE - 1;
+        return snakeCells.get(0).getCoordX() < FIELD_X_SIZE - 1;
     }
 
     public boolean canIGoDown() {
-        return snakeCells.get(0).getCellCoordY() < FIELD_Y_SIZE - 1;
+        return snakeCells.get(0).getCoordY() < FIELD_Y_SIZE - 1;
     }
 
     private boolean appleFoundCheck() {
         boolean result = false;
 
         for (Apple apple : applesObj.getApples()) {
-            if (apple.getAppleCoordX() == snakeCells.get(0).getCellCoordX()
-                    && apple.getAppleCoordY() == snakeCells.get(0).getCellCoordY()) {
+            if (apple.getCoordX() == snakeCells.get(0).getCoordX()
+                    && apple.getCoordY() == snakeCells.get(0).getCoordY()) {
                 log.info("Apple found");
                 applesObj.getApples().remove(apple);
                 log.info("Apple removed");
@@ -82,32 +83,32 @@ public class Movement {
     }
 
     private void goDown() {
-        snakeCells.add(0, new Cell(snakeCells.get(0).getCellCoordX(),
-                snakeCells.get(0).getCellCoordY() + 1));
+        snakeCells.add(0, new SnakeCell(snakeCells.get(0).getCoordX(),
+                snakeCells.get(0).getCoordY() + 1));
         if (!appleFoundCheck()) {
             removeTailCell();
         }
     }
 
     private void goUp() {
-        snakeCells.add(0, new Cell(snakeCells.get(0).getCellCoordX(),
-                snakeCells.get(0).getCellCoordY() - 1));
+        snakeCells.add(0, new SnakeCell(snakeCells.get(0).getCoordX(),
+                snakeCells.get(0).getCoordY() - 1));
         if (!appleFoundCheck()) {
             removeTailCell();
         }
     }
 
     private void goLeft() {
-        snakeCells.add(0, new Cell(snakeCells.get(0).getCellCoordX() - 1,
-                snakeCells.get(0).getCellCoordY()));
+        snakeCells.add(0, new SnakeCell(snakeCells.get(0).getCoordX() - 1,
+                snakeCells.get(0).getCoordY()));
         if (!appleFoundCheck()) {
             removeTailCell();
         }
     }
 
     private void goRight() {
-        snakeCells.add(0, new Cell(snakeCells.get(0).getCellCoordX() + 1,
-                snakeCells.get(0).getCellCoordY()));
+        snakeCells.add(0, new SnakeCell(snakeCells.get(0).getCoordX() + 1,
+                snakeCells.get(0).getCoordY()));
         if (!appleFoundCheck()) {
             removeTailCell();
         }

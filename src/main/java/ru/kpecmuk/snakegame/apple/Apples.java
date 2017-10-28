@@ -2,7 +2,9 @@ package ru.kpecmuk.snakegame.apple;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import ru.kpecmuk.snakegame.utils.Convert;
+import ru.kpecmuk.snakegame.game.Game;
+import ru.kpecmuk.snakegame.gameobjects.Apple;
+import ru.kpecmuk.snakegame.utils.Utils;
 
 import java.awt.*;
 import java.util.ArrayList;
@@ -17,16 +19,18 @@ import static ru.kpecmuk.snakegame.game.Game.*;
  * @since 25.10.2017
  */
 
-public class Apples extends Convert {
+public class Apples {
     private static final Logger log = LoggerFactory.getLogger(Apples.class);
 
     private ArrayList<Apple> apples;
     private Graphics2D graphics;
+    private Utils utils;
 
-    public Apples(Graphics2D graphics, int coordX, int coordY) {
-        this.graphics = graphics;
+    public Apples(Game game, int coordX, int coordY) {
+        this.utils = game.getUtils();
+        this.graphics = game.getDisplay().getGraphics();
         this.apples = new ArrayList<>();
-        this.apples.add(new Apple(coordX, coordY, false));
+        this.apples.add(new Apple(coordX, coordY));
     }
 
     public ArrayList<Apple> getApples() {
@@ -40,25 +44,18 @@ public class Apples extends Convert {
         int randomX = rand.nextInt((FIELD_X_SIZE - 1) + 1);
         int randomY = rand.nextInt((FIELD_Y_SIZE - 1) + 1);
 
-        apples.add(new Apple(randomX, randomY, false));
+        apples.add(new Apple(randomX, randomY));
     }
 
     public void drawApples() {
         for (Apple apple : apples) {
-            drawApple(apple.getAppleCoordX(), apple.getAppleCoordY());
+            drawApple(apple.getCoordX(), apple.getCoordY());
         }
     }
 
     private void drawApple(int x, int y) {
         graphics.setColor(Color.RED);
-        graphics.fill3DRect(toPixel(x), toPixel(y), CELL_SIZE - 5, CELL_SIZE - 5, true);
-    }
-
-    public int getCoordX(Apple apple) {
-        return apple.getAppleCoordX();
-    }
-
-    public int getCoordY(Apple apple) {
-        return apple.getAppleCoordY();
+        graphics.fill3DRect(utils.getConvert().toPixel(x), utils.getConvert().toPixel(y),
+                CELL_SIZE - 5, CELL_SIZE - 5, true);
     }
 }
