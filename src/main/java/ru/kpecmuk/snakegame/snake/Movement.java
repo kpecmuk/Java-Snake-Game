@@ -93,7 +93,7 @@ public class Movement {
                 log.info("Apple found");
                 applesObj.getApples().remove(apple);
                 log.info("Apple removed");
-                applesObj.addNewApple();
+                applesObj.addNewApple(snakeCells);
                 log.info("New apple generated");
                 reduceGameSpeed();
                 result = true;
