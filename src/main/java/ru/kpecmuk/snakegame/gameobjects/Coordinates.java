@@ -7,7 +7,6 @@ import org.slf4j.LoggerFactory;
  * @author kpecmuk
  * @since 28.10.2017
  */
-
 public abstract class Coordinates implements GameObjects {
     private static final Logger log = LoggerFactory.getLogger(Coordinates.class);
 

@@ -18,7 +18,6 @@ import java.util.Arrays;
  * @author kpecmuk
  * @since 24.10.2017
  */
-
 public class Display {
     private static final Logger log = LoggerFactory.getLogger(Display.class);
 

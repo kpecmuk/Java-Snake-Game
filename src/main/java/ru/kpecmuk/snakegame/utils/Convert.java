@@ -12,7 +12,6 @@ import static ru.kpecmuk.snakegame.game.Game.CELL_SIZE;
  * @author kpecmuk
  * @since 25.10.2017
  */
-
 public class Convert {
     private static final Logger log = LoggerFactory.getLogger(Convert.class);
 

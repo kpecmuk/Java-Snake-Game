@@ -9,7 +9,6 @@ import org.slf4j.LoggerFactory;
  * @author kpecmuk
  * @since 28.10.2017
  */
-
 public class SnakeCell extends Coordinates {
     private static final Logger log = LoggerFactory.getLogger(SnakeCell.class);
 

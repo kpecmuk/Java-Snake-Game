@@ -16,7 +16,6 @@ import java.awt.*;
  * @author kpecmuk
  * @since 24.10.2017
  */
-
 public class Game implements Runnable {
     public static final int FIELD_X_SIZE = 30;
     public static final int FIELD_Y_SIZE = 25;

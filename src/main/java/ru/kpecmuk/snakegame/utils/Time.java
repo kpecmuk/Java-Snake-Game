@@ -9,7 +9,6 @@ import org.slf4j.LoggerFactory;
  * @author kpecmuk
  * @since 24.10.2017
  */
-
 public class Time {
     private static final Logger log = LoggerFactory.getLogger(Time.class);
 

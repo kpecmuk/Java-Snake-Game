@@ -30,7 +30,9 @@ public class Movement {
     }
 
     /**
-     * Двигаем змейкку. Берём направление и двигаем.
+     * Двигаем змейку. Берём направление и двигаем.
+     *
+     * @return false - если была достигнута граница поля
      */
     public boolean moveSnake() {
         boolean result = true;
@@ -88,7 +90,6 @@ public class Movement {
     /**
      * @return если можно двигаться вверх
      */
-
     private boolean canIGoUp() {
         return snakeCells.get(0).getCoordY() > 0;
     }

@@ -7,7 +7,6 @@ import org.slf4j.LoggerFactory;
  * @author kpecmuk
  * @since 28.10.2017
  */
-
 public class Apple extends Coordinates implements Comparable<SnakeCell> {
     private static final Logger log = LoggerFactory.getLogger(Apple.class);
 

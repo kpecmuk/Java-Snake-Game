@@ -14,7 +14,6 @@ import static ru.kpecmuk.snakegame.game.Game.WINDOW_WIDTH;
  * @author kpecmuk
  * @since 25.10.2017
  */
-
 public class GameField {
     private static final Logger log = LoggerFactory.getLogger(GameField.class);
 
