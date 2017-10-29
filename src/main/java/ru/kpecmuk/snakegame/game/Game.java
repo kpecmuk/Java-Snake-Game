@@ -28,7 +28,7 @@ public class Game implements Runnable {
     private static final Logger log = LoggerFactory.getLogger(Game.class);
     private static final long IDLE_TIME = 1;
     private static final float UPDATE_RATE = 60.0f;
-    private static long GAME_SPEED = 300_000_000L;
+    private static long GAME_SPEED = 250_000_000L;
     private boolean isRunning;
     private Display display;
     private Graphics2D graphics;
@@ -102,8 +102,11 @@ public class Game implements Runnable {
      */
     private void doGameOver() {
         demoMode = true;
+        GAME_SPEED = 250_000_000L;
         snake.getSnakeCells().clear();
         snake.getSnakeCells().add(new SnakeCell(FIELD_X_SIZE / 2, FIELD_Y_SIZE / 2));
+        snake.getSnakeCells().add(new SnakeCell(FIELD_X_SIZE / 2 + 1, FIELD_Y_SIZE / 2));
+        snake.directionObj().setDirect(Direction.directions.LEFT);
 
         applesObj.getApples().clear();
         applesObj.addNewApple(snake.getSnakeCells());

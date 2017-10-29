@@ -35,6 +35,8 @@ public class Movement {
      * @return false - если была достигнута граница поля
      */
     public boolean moveSnake() {
+        if (isSnakeFound()) return false;
+
         boolean result = true;
 
         if (direction.getDirection().equals(Direction.directions.UP)) {
@@ -88,6 +90,22 @@ public class Movement {
     }
 
     /**
+     * @return true - если голова змейки нашла своё тело
+     */
+    private boolean isSnakeFound() {
+        boolean result = false;
+
+        for (int snakeCell = 1; snakeCell < snakeCells.size() - 1; snakeCell++) {
+            if (snakeCells.get(0).compareTo(snakeCells.get(snakeCell)) == 0) {
+                log.info("Snake body found");
+                result = true;
+                break;
+            }
+        }
+        return result;
+    }
+
+    /**
      * @return если можно двигаться вверх
      */
     private boolean canIGoUp() {
@@ -125,7 +143,7 @@ public class Movement {
         boolean result = false;
 
         for (Apple apple : applesObj.getApples()) {
-            if (apple.compareTo(snakeCells.get(0)) == 0) {
+            if (snakeCells.get(0).compareTo(apple) == 0) {
                 log.info("Apple found");
                 applesObj.getApples().remove(apple);
                 log.info("Apple removed");
@@ -148,6 +166,7 @@ public class Movement {
         if (!isAppleFound()) {
             removeTailCell();
         }
+
     }
 
     /**
