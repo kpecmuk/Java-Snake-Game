@@ -138,7 +138,6 @@ public class Game implements Runnable {
         if (userActionKey != 0) {
             demoMode = false;
             newUserAction = true;
-            log.info(String.valueOf(userActionKey));
             snake.directionObj().changeDirection(userActionKey);
             log.info(String.valueOf(snake.directionObj().getDirection()));
         }
@@ -148,7 +147,8 @@ public class Game implements Runnable {
             newUserAction = false;
             userActionKey = 0;
 
-            if ((!snake.movementObj().moveSnake()) && (!demoMode)) {
+            if ((!snake.getMovement().moveSnake() && !demoMode) || (snake.getMovement().snakeCellFound())) {
+                log.info("!!! GAME OVER !!!");
                 doGameOver();
             }
         }

@@ -35,8 +35,6 @@ public class Movement {
      * @return false - если была достигнута граница поля
      */
     public boolean moveSnake() {
-        if (isSnakeFound()) return false;
-
         boolean result = true;
 
         if (direction.getDirection().equals(Direction.directions.UP)) {
@@ -92,7 +90,7 @@ public class Movement {
     /**
      * @return true - если голова змейки нашла своё тело
      */
-    private boolean isSnakeFound() {
+    public boolean snakeCellFound() {
         boolean result = false;
 
         for (int snakeCell = 1; snakeCell < snakeCells.size() - 1; snakeCell++) {

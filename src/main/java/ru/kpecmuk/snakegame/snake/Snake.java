@@ -42,7 +42,7 @@ public class Snake {
         this.movement = new Movement(snakeCells, direction, this.applesObj);
     }
 
-    public Movement movementObj() {
+    public Movement getMovement() {
         return this.movement;
     }
 
