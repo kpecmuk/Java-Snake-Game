@@ -42,9 +42,11 @@ public class Game implements Runnable {
     private boolean needToMove = false;
     private long moveLastTime = 0;
     private int userActionKey = 0;
+    private boolean demoMode;
 
     public Game(Display display) {
         this.isRunning = false;
+        this.demoMode = true;
         this.display = display;
         this.display.createWindow();
         this.utils = new Utils(display);
@@ -55,6 +57,9 @@ public class Game implements Runnable {
         this.snake.directionObj().setDirect(Direction.directions.UP);
     }
 
+    /**
+     * С каждым скушанным яблоком увеличивается скорость змейки
+     */
     public static void reduceGameSpeed() {
         GAME_SPEED -= 3_000_000;
     }
@@ -96,6 +101,7 @@ public class Game implements Runnable {
      * Обнуляем списки  игровых объектов и начинаем игру заново
      */
     private void doGameOver() {
+        demoMode = true;
         snake.getSnakeCells().clear();
         snake.getSnakeCells().add(new SnakeCell(FIELD_X_SIZE / 2, FIELD_Y_SIZE / 2));
 
@@ -119,16 +125,15 @@ public class Game implements Runnable {
     }
 
     /**
-     * user input codes:
-     * 37 - left
-     * 38 - up
-     * 39 - right
-     * 40 -down
+     * Когда нажата любая кнопка: отключается демо режим. В случае столкновения произойдет обнуление
+     * игровых данных. В демо режиме происходит поворот. Ну тоесть поворот уже произошёл, но именно потому что
+     * он произошёл - определяем что было столкновение с границей экрана.
      */
     private void update() {
         if (!newUserAction) userActionKey = utils.getUserInput().getKeyboardKey();
 
         if (userActionKey != 0) {
+            demoMode = false;
             newUserAction = true;
             log.info(String.valueOf(userActionKey));
             snake.directionObj().changeDirection(userActionKey);
@@ -136,15 +141,12 @@ public class Game implements Runnable {
         }
 
         if (needToMove) {
-            if (snake.movementObj().moveSnake()) {
-                needToMove = false;
-                newUserAction = false;
-                userActionKey = 0;
-            } else {
-                needToMove = false;
-                newUserAction = false;
-                userActionKey = 0;
-//                doGameOver();
+            needToMove = false;
+            newUserAction = false;
+            userActionKey = 0;
+
+            if ((!snake.movementObj().moveSnake()) && (!demoMode)) {
+                doGameOver();
             }
         }
     }
