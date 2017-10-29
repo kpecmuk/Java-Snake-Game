@@ -32,48 +32,85 @@ public class Movement {
     /**
      * Двигаем змейкку. Берём направление и двигаем.
      */
-    public void moveSnake() {
+    public boolean moveSnake() {
+        boolean result = true;
+
         if (direction.getDirection().equals(Direction.directions.UP)) {
-            goUp();
-        }
-        if (direction.getDirection().equals(Direction.directions.DOWN)) {
-            goDown();
-        }
-        if (direction.getDirection().equals(Direction.directions.RIGHT)) {
-            goRight();
-        }
-        if (direction.getDirection().equals(Direction.directions.LEFT)) {
-            goLeft();
+            if (canIGoUp()) {
+                log.info("Moving UP");
+                goUp();
+            } else {
+                log.info("ELSE moving RIGHT");
+                direction.setDirect(Direction.directions.RIGHT);
+                goRight();
+                result = false;
+            }
         }
 
-        log.info("Moving to " + direction.getDirection());
+        if (direction.getDirection().equals(Direction.directions.DOWN)) {
+            if (canIGoDown()) {
+                log.info("Moving DOWN");
+                goDown();
+            } else {
+                log.info("ELSE moving LEFT");
+                direction.setDirect(Direction.directions.LEFT);
+                goLeft();
+                result = false;
+            }
+        }
+
+        if (direction.getDirection().equals(Direction.directions.RIGHT)) {
+            if (canIGoRight()) {
+                log.info("Moving RIGHT");
+                goRight();
+            } else {
+                log.info("ELSE moving DOWN");
+                direction.setDirect(Direction.directions.DOWN);
+                goDown();
+                result = false;
+            }
+        }
+
+        if (direction.getDirection().equals(Direction.directions.LEFT)) {
+            if (canIGoLeft()) {
+                log.info("Moving LEFT");
+                goLeft();
+            } else {
+                log.info("ELSE moving UP");
+                direction.setDirect(Direction.directions.UP);
+                goUp();
+                result = false;
+            }
+        }
+        return result;
     }
 
     /**
      * @return если можно двигаться вверх
      */
-    public boolean canIGoUp() {
+
+    private boolean canIGoUp() {
         return snakeCells.get(0).getCoordY() > 0;
     }
 
     /**
      * @return если можно двигаться влево
      */
-    public boolean canIGoLeft() {
+    private boolean canIGoLeft() {
         return snakeCells.get(0).getCoordX() > 0;
     }
 
     /**
      * @return если можно двигаться вправо
      */
-    public boolean canIGoRight() {
+    private boolean canIGoRight() {
         return snakeCells.get(0).getCoordX() < FIELD_X_SIZE - 1;
     }
 
     /**
      * @return если можно двигаться вниз
      */
-    public boolean canIGoDown() {
+    private boolean canIGoDown() {
         return snakeCells.get(0).getCoordY() < FIELD_Y_SIZE - 1;
     }
 
@@ -83,12 +120,11 @@ public class Movement {
      *
      * @return true если нашли
      */
-    private boolean appleFoundCheck() {
+    private boolean isAppleFound() {
         boolean result = false;
 
         for (Apple apple : applesObj.getApples()) {
-            if (apple.getCoordX() == snakeCells.get(0).getCoordX()
-                    && apple.getCoordY() == snakeCells.get(0).getCoordY()) {
+            if (apple.compareTo(snakeCells.get(0)) == 0) {
                 log.info("Apple found");
                 applesObj.getApples().remove(apple);
                 log.info("Apple removed");
@@ -108,7 +144,7 @@ public class Movement {
     private void goDown() {
         snakeCells.add(0, new SnakeCell(snakeCells.get(0).getCoordX(),
                 snakeCells.get(0).getCoordY() + 1));
-        if (!appleFoundCheck()) {
+        if (!isAppleFound()) {
             removeTailCell();
         }
     }
@@ -119,7 +155,7 @@ public class Movement {
     private void goUp() {
         snakeCells.add(0, new SnakeCell(snakeCells.get(0).getCoordX(),
                 snakeCells.get(0).getCoordY() - 1));
-        if (!appleFoundCheck()) {
+        if (!isAppleFound()) {
             removeTailCell();
         }
     }
@@ -130,7 +166,7 @@ public class Movement {
     private void goLeft() {
         snakeCells.add(0, new SnakeCell(snakeCells.get(0).getCoordX() - 1,
                 snakeCells.get(0).getCoordY()));
-        if (!appleFoundCheck()) {
+        if (!isAppleFound()) {
             removeTailCell();
         }
     }
@@ -141,7 +177,7 @@ public class Movement {
     private void goRight() {
         snakeCells.add(0, new SnakeCell(snakeCells.get(0).getCoordX() + 1,
                 snakeCells.get(0).getCoordY()));
-        if (!appleFoundCheck()) {
+        if (!isAppleFound()) {
             removeTailCell();
         }
     }

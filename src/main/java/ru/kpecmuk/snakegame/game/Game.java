@@ -94,9 +94,9 @@ public class Game implements Runnable {
     }
 
     /**
-     * Обнуляем списки объектов и начинаем игру заново
+     * Обнуляем списки  игровых объектов и начинаем игру заново
      */
-    public void doGameOver() {
+    private void doGameOver() {
         snake.getSnakeCells().clear();
         snake.getSnakeCells().add(new SnakeCell(FIELD_X_SIZE / 2, FIELD_Y_SIZE / 2));
 
@@ -105,7 +105,7 @@ public class Game implements Runnable {
     }
 
     /**
-     * Отрисовываем объекты в буфере экрана.
+     * Отрисовываем игровые объекты в буфере экрана.
      * Очищаем, рисуем сетку, рисуем яблоки, рисуем змейку.
      * Затем переключаем буфер и его содержимое показывается на экране.
      */
@@ -134,33 +134,19 @@ public class Game implements Runnable {
             log.info(String.valueOf(userActionKey));
             snake.directionObj().changeDirection(userActionKey);
             log.info(String.valueOf(snake.directionObj().getDirection()));
-        } else {
-            if (!newUserAction) {
-//                log.info(String.valueOf("User action: " + newUserAction));
-                if (snake.directionObj().getDirection().equals(Direction.directions.UP) && !snake.movementObj().canIGoUp()) {
-                    log.info("UP -> RIGHT");
-                    snake.directionObj().setDirect(Direction.directions.RIGHT);
-                }
-                if (snake.directionObj().getDirection().equals(Direction.directions.RIGHT) && !snake.movementObj().canIGoRight()) {
-                    log.info("RIGHT -> DOWN");
-                    snake.directionObj().setDirect(Direction.directions.DOWN);
-                }
-                if (snake.directionObj().getDirection().equals(Direction.directions.DOWN) && !snake.movementObj().canIGoDown()) {
-                    log.info("DOWN -> LEFT");
-                    snake.directionObj().setDirect(Direction.directions.LEFT);
-                }
-                if (snake.directionObj().getDirection().equals(Direction.directions.LEFT) && !snake.movementObj().canIGoLeft()) {
-                    log.info("LEFT -> UP");
-                    snake.directionObj().setDirect(Direction.directions.UP);
-                }
-            }
         }
 
         if (needToMove) {
-            snake.movementObj().moveSnake();
-            needToMove = false;
-            newUserAction = false;
-            userActionKey = 0;
+            if (snake.movementObj().moveSnake()) {
+                needToMove = false;
+                newUserAction = false;
+                userActionKey = 0;
+            } else {
+                needToMove = false;
+                newUserAction = false;
+                userActionKey = 0;
+//                doGameOver();
+            }
         }
     }
 
