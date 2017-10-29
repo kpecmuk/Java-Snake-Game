@@ -127,7 +127,7 @@ public class Game implements Runnable {
      * 40 -down
      */
     private void update() {
-        if (!newUserAction) userActionKey = utils.getUserInput().getUserKey();
+        if (!newUserAction) userActionKey = utils.getUserInput().getKeyboardKey();
 
         if (userActionKey != 0) {
             newUserAction = true;

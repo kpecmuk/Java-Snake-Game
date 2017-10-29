@@ -46,7 +46,8 @@ public class Apples {
     /**
      * Генерация нового яблока
      *
-     * @param snakeCells
+     * @param snakeCells список с ячейками змейки, который будем перебирать
+     *                   чтобы новое яблоко не оказалось внутри змейки
      */
     public void addNewApple(final ArrayList<SnakeCell> snakeCells) {
         Random rand = new Random();
@@ -75,7 +76,6 @@ public class Apples {
      * Отрисовка яблок согласно списку
      * Координаты получаем из списка
      */
-
     public void drawApples() {
         for (Apple apple : apples) {
             drawApple(apple.getCoordX(), apple.getCoordY());

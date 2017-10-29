@@ -18,9 +18,9 @@ public class Utils {
     private UserInput userInput;
 
     /**
-     * Создаем экземпляры утилит
+     * Создаем объекты утилит
      *
-     * @param display ссылка на экземпляр Display
+     * @param display ссылка на объект Display
      */
     public Utils(Display display) {
         this.convert = new Convert();
@@ -31,7 +31,7 @@ public class Utils {
     /**
      * Для доступа к конвертеру
      *
-     * @return ссылка на экземпляр Convert
+     * @return ссылка на объект Convert
      */
     public Convert getConvert() {
         return this.convert;
@@ -40,7 +40,7 @@ public class Utils {
     /**
      * Для получения времени
      *
-     * @return ссылка на экземпляр Time
+     * @return ссылка на объект Time
      */
     public Time getTime() {
         return this.time;
@@ -49,7 +49,7 @@ public class Utils {
     /**
      * Для опроса клавиатуры
      *
-     * @return ссылка на экземпляр UserInput
+     * @return ссылка на объект UserInput
      */
     public UserInput getUserInput() {
         return this.userInput;

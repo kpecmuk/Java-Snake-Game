@@ -20,7 +20,7 @@ public class UserInput {
         this.display = display;
     }
 
-    public int getUserKey() {
+    public int getKeyboardKey() {
         int result = display.getUserKey();
         display.clearUserKey();
         return result;
