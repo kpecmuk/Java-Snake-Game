@@ -88,6 +88,8 @@ public class Movement {
     }
 
     /**
+     * Проверяем на столкновение со змейкой
+     *
      * @return true - если голова змейки нашла своё тело
      */
     public boolean snakeCellFound() {
@@ -104,28 +106,36 @@ public class Movement {
     }
 
     /**
-     * @return если можно двигаться вверх
+     * Проверяем можно ли двигаться вверх
+     *
+     * @return true если можно
      */
     private boolean canIGoUp() {
         return snakeCells.get(0).getCoordY() > 0;
     }
 
     /**
-     * @return если можно двигаться влево
+     * Проверяем можно ли двигаться вверх
+     *
+     * @return true если можно
      */
     private boolean canIGoLeft() {
         return snakeCells.get(0).getCoordX() > 0;
     }
 
     /**
-     * @return если можно двигаться вправо
+     * Проверяем можно ли двигаться вправо
+     *
+     * @return true если можно
      */
     private boolean canIGoRight() {
         return snakeCells.get(0).getCoordX() < FIELD_X_SIZE - 1;
     }
 
     /**
-     * @return если можно двигаться вниз
+     * Проверяем можно ли двигаться вверх
+     *
+     * @return true если можно
      */
     private boolean canIGoDown() {
         return snakeCells.get(0).getCoordY() < FIELD_Y_SIZE - 1;
@@ -133,7 +143,7 @@ public class Movement {
 
     /**
      * Проверка не нашли ли яблоко.
-     * Если нашли то удаляем и генерируем новое
+     * Если нашли то удаляем, генерируем новое, ускоряемся
      *
      * @return true если нашли
      */
@@ -146,8 +156,7 @@ public class Movement {
                 applesObj.getApples().remove(apple);
                 log.info("Apple removed");
                 applesObj.addNewApple(snakeCells);
-                log.info("New apple generated");
-                reduceGameSpeed();
+                increaseGameSpeed();
                 result = true;
                 break;
             }

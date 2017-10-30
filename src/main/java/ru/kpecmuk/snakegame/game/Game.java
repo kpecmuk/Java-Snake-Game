@@ -60,7 +60,8 @@ public class Game implements Runnable {
     /**
      * С каждым скушанным яблоком увеличивается скорость змейки
      */
-    public static void reduceGameSpeed() {
+    public static void increaseGameSpeed() {
+        log.info("Game speed increased");
         GAME_SPEED -= 3_000_000;
     }
 

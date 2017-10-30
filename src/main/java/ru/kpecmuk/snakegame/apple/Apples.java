@@ -70,6 +70,7 @@ public class Apples {
         while (!result);
 
         apples.add(new Apple(randomX, randomY));
+        log.info("New apple generated");
     }
 
     /**

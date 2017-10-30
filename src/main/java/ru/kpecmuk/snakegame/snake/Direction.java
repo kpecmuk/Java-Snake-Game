@@ -27,6 +27,11 @@ public class Direction {
         return "Heading: " + direct;
     }
 
+    /**
+     * Превращаем код, полученный с клавиатуры в направление движенния
+     *
+     * @param key код с клавиатуры
+     */
     public void changeDirection(int key) {
         if (key == 37) {                    // LEFT
             this.direct = directions.LEFT;
