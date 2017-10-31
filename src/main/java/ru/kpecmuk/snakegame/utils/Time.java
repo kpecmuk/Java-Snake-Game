@@ -24,52 +24,79 @@ public class Time {
         return 1_000_000_000L;
     }
 
-    /*
-        Время обновления заголовка окна
+    /**
+     * @return true если заголовок можно обновить
      */
     public boolean isTimeToUpdateTitle() {
         return this.updateTitleTime > getSecond();
     }
 
+    /**
+     * Увеличиваем счётчик времени до обновления заголовка окна
+     */
     public void increaseUpdateTitleTime() {
         this.updateTitleTime += this.elapsedTime;
     }
 
+    /**
+     * Обнуляем счётчик обновления заголовка
+     */
     public void clearUpdateTitleTime() {
         this.updateTitleTime = 0;
     }
 
+    /**
+     * @return сколько времени прошло между циклами
+     */
     public long loadElapsedTime() {
         return this.elapsedTime;
     }
 
+    /**
+     * Вычисляем и сохраняем сколько прошло времени между циклами
+     */
     public void saveElapsedTime() {
         this.elapsedTime = this.currentTime - this.lastTime;
     }
 
-    /*
-        А не пора ли двигать змейку?
+    /**
+     * @return true если пора двигать змейку
      */
     public boolean isTimeToMoveSnake() {
         return ((currentTime - movedLastTime) > GAME_SPEED);
     }
 
+    /**
+     * Сохраняем время, когда последний раз двигали змейку
+     */
     public void saveLastMovedTime() {
         this.movedLastTime = this.currentTime;
     }
 
-    public void saveLastTime(long currentTime) {
-        this.lastTime = currentTime;
+    /**
+     * @param time сохраняемое время
+     */
+    public void saveLastTime(long time) {
+        this.lastTime = time;
     }
 
+    /**
+     * @return System.nanoTime()
+     */
     public long getSystemTime() {
         return System.nanoTime();
     }
 
+    /**
+     * @return сохраненное текущее время
+     */
     public long loadCurrentTime() {
         return this.currentTime;
     }
 
+    /**
+     * Сохраняем текущее время
+     */
     public void saveCurrentTime() {
         this.currentTime = getSystemTime();
     }
