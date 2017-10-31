@@ -28,7 +28,7 @@ public class Game implements Runnable {
     private static final Logger log = LoggerFactory.getLogger(Game.class);
     private static final long IDLE_TIME = 1;
     private static final float UPDATE_RATE = 60.0f;
-    private static long GAME_SPEED = 250_000_000L;
+    public static long GAME_SPEED = 250_000_000L;
     private boolean isRunning;
     private Display display;
     private Graphics2D graphics;
@@ -155,24 +155,25 @@ public class Game implements Runnable {
         }
     }
 
+    /**
+     * Сюда лучше не смотреть. Тут такая херня творится что ппц.
+     */
     @Override
     public void run() {
         float delta = 0;
         int fps = 0, upd = 0, updateLoops = 0;
-        long count = 0;
-
-        long lastTime = utils.getTime().getTime();
+        utils.getTime().clearUpdateTitleTime();                             // сброс счётчика обновления заголовка окна
+        utils.getTime().saveLastTime(utils.getTime().getSystemTime());      // устанавливаем текущее время
 
         while (isRunning) {
-            long currentTime = utils.getTime().getTime();
+            utils.getTime().saveCurrentTime();              // сохраняем текущее время
+            utils.getTime().saveElapsedTime();              // вычистяем сколько времени прошло с последнего захода сюда
+            utils.getTime().saveLastTime(utils.getTime().loadCurrentTime());        // обновляем время последнего захода
+            utils.getTime().increaseUpdateTitleTime();      // накручиваем счётчик времени обновления заголовка
 
-            long elapsedTime = currentTime - lastTime;
-            lastTime = currentTime;
-
-            count += elapsedTime;
             boolean needRender = false;
             float UPDATE_INTERVAL = utils.getTime().getSecond() / UPDATE_RATE;
-            delta += (elapsedTime / UPDATE_INTERVAL);
+            delta += (utils.getTime().loadElapsedTime() / UPDATE_INTERVAL);
             while (delta > 1) {
                 update();
                 upd++;
@@ -194,17 +195,25 @@ public class Game implements Runnable {
                 }
             }
 
-            if (currentTime - moveLastTime > GAME_SPEED) {
+            /*
+                Двигаем змейку если надо и сохраняем время
+             */
+            if (utils.getTime().isTimeToMoveSnake()) {
                 needToMove = true;
-                moveLastTime = currentTime;
+                utils.getTime().saveLastMovedTime();
             }
 
-            if (count >= utils.getTime().getSecond()) {
+            /*
+                Каждую секунду обновляем заголовок окна
+             */
+            if (utils.getTime().isTimeToUpdateTitle()) {
                 String title = WINDOW_TITLE + " || fps:" + fps + "  | Upd: " + upd + "  | Loops: " + updateLoops +
-                        " | " + snake.directionObj().getDirection() + " | " + snake.getSnakeCells().get(0).getCoordX() + "  |  " +
-                        snake.getSnakeCells().get(0).getCoordY();
+                        " | " + snake.directionObj().getDirection();
                 display.setWindowTitle(title);
-                count = upd = updateLoops = fps = 0;
+                utils.getTime().clearUpdateTitleTime();
+                upd = 0;
+                updateLoops = 0;
+                fps = 0;
             }
         }
     }
