@@ -23,7 +23,7 @@ public class Game implements Runnable {
     public static final int CLEAR_COLOR = 0xff_40_40_40;
     public static final int WINDOW_WIDTH = CELL_SIZE * FIELD_X_SIZE + 5;
     public static final int WINDOW_HEIGHT = CELL_SIZE * FIELD_Y_SIZE + 5;
-    public static final String WINDOW_TITLE = "SnakeCell";
+    public static final String WINDOW_TITLE = "Java-Snake-Game";
     public static final int NUMBER_OF_BUFFERS = 3;
     private static final Logger log = LoggerFactory.getLogger(Game.class);
     private static final long IDLE_TIME = 1;
@@ -40,7 +40,6 @@ public class Game implements Runnable {
     private Snake snake;
     private Apples applesObj;
     private boolean needToMove = false;
-    private long moveLastTime = 0;
     private int userActionKey = 0;
     private boolean demoMode;
 
