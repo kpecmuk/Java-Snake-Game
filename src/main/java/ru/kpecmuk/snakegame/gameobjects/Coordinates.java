@@ -19,11 +19,11 @@ public class Coordinates implements GameObjects, Comparable<Coordinates> {
     }
 
     public int getCoordX() {
-        return coordX;
+        return this.coordX;
     }
 
     public int getCoordY() {
-        return coordY;
+        return this.coordY;
     }
 
     /**

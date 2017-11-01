@@ -8,8 +8,9 @@ import ru.kpecmuk.snakegame.graphics.Display;
  * @author kpecmuk
  * @since 01.11.2017
  */
-
 public class Setup {
+    private static final Logger log = LoggerFactory.getLogger(Setup.class);
+
     public static final int FIELD_X_SIZE = 30;
     public static final int FIELD_Y_SIZE = 25;
     public static final int CELL_SIZE = 32;
@@ -18,7 +19,7 @@ public class Setup {
     static final String WINDOW_TITLE = "Java-Snake-Game";
     static final long IDLE_TIME = 1;
     static final float UPDATE_RATE = 60.0f;
-    private static final Logger log = LoggerFactory.getLogger(Setup.class);
+
     private static final int CLEAR_COLOR = 0xff_40_40_40;
     private static final int NUMBER_OF_BUFFERS = 3;
     private Display display;

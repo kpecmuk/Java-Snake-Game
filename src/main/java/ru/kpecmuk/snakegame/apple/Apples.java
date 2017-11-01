@@ -23,9 +23,9 @@ public class Apples {
     /**
      * Список яблок
      */
-    private ArrayList<Apple> apples;
-    private Graphics2D graphics;
-    private Utils utils;
+    private final ArrayList<Apple> apples;
+    private final Graphics2D graphics;
+    private final Utils utils;
 
     public Apples(Game game, int coordX, int coordY) {
         this.utils = game.getUtils();
@@ -39,7 +39,7 @@ public class Apples {
      *
      * @return список с яблоками
      */
-    public ArrayList<Apple> getApples() {
+    public final ArrayList<Apple> getApples() {
         return this.apples;
     }
 
@@ -49,7 +49,7 @@ public class Apples {
      * @param snakeCells список с ячейками змейки, который будем перебирать
      *                   чтобы новое яблоко не оказалось внутри змейки
      */
-    public void addNewApple(final ArrayList<SnakeCell> snakeCells) {
+    public final void addNewApple(final ArrayList<SnakeCell> snakeCells) {
         Random rand = new Random();
         int randomX, randomY;
         boolean result;
@@ -77,8 +77,8 @@ public class Apples {
      * Отрисовка яблок согласно списку
      * Координаты получаем из списка
      */
-    public void drawApples() {
-        for (Apple apple : apples) {
+    public final void drawApples() {
+        for (final Apple apple : apples) {
             drawApple(apple.getCoordX(), apple.getCoordY());
         }
     }

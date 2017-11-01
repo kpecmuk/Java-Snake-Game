@@ -21,9 +21,9 @@ public class Game extends Setup implements Runnable {
     public static long GAME_SPEED = 250_000_000L;
     private boolean isRunning;
 
-    private Graphics2D graphics;
+    private final Graphics2D graphics;
     private Thread gameThread;
-    private Utils utils;
+    private final Utils utils;
     private boolean newUserAction = false;
 
     private GameField gameField;
@@ -52,12 +52,11 @@ public class Game extends Setup implements Runnable {
         GAME_SPEED -= 3_000_000;
     }
 
-    public Utils getUtils() {
+    public final Utils getUtils() {
         return this.utils;
     }
 
-
-    public synchronized void startGame() {
+    public final synchronized void startGame() {
         if (isRunning) return;
 
         isRunning = true;
@@ -65,7 +64,7 @@ public class Game extends Setup implements Runnable {
         gameThread.start();
     }
 
-    synchronized int stopGame() {
+    final synchronized int stopGame() {
         if (!isRunning) return 1;
 
         try {
@@ -78,7 +77,6 @@ public class Game extends Setup implements Runnable {
             return 0;
         }
     }
-
 
     /**
      * Обнуляем списки  игровых объектов и начинаем игру заново
@@ -141,7 +139,7 @@ public class Game extends Setup implements Runnable {
      * Сюда лучше не смотреть. Тут такая херня творится что ппц.
      */
     @Override
-    public void run() {
+    public final void run() {
         float delta = 0;
         int fps = 0, upd = 0, updateLoops = 0;
         utils.getTime().clearUpdateTitleTime();                             // сброс счётчика обновления заголовка окна

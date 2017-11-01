@@ -9,7 +9,6 @@ import org.slf4j.LoggerFactory;
  * @author kpecmuk
  * @since 26.10.2017
  */
-
 public class Direction {
     private static final Logger log = LoggerFactory.getLogger(Direction.class);
     private directions direct;
