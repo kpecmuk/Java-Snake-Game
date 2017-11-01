@@ -4,7 +4,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import ru.kpecmuk.snakegame.apple.Apples;
 import ru.kpecmuk.snakegame.gameobjects.SnakeCell;
-import ru.kpecmuk.snakegame.graphics.Display;
 import ru.kpecmuk.snakegame.graphics.GameField;
 import ru.kpecmuk.snakegame.snake.Direction;
 import ru.kpecmuk.snakegame.snake.Snake;
@@ -16,21 +15,12 @@ import java.awt.*;
  * @author kpecmuk
  * @since 24.10.2017
  */
-public class Game implements Runnable {
-    public static final int FIELD_X_SIZE = 30;
-    public static final int FIELD_Y_SIZE = 25;
-    public static final int CELL_SIZE = 32;
-    public static final int CLEAR_COLOR = 0xff_40_40_40;
-    public static final int WINDOW_WIDTH = CELL_SIZE * FIELD_X_SIZE + 5;
-    public static final int WINDOW_HEIGHT = CELL_SIZE * FIELD_Y_SIZE + 5;
-    public static final String WINDOW_TITLE = "Java-Snake-Game";
-    public static final int NUMBER_OF_BUFFERS = 3;
+public class Game extends Setup implements Runnable {
     private static final Logger log = LoggerFactory.getLogger(Game.class);
-    private static final long IDLE_TIME = 1;
-    private static final float UPDATE_RATE = 60.0f;
+
     public static long GAME_SPEED = 250_000_000L;
     private boolean isRunning;
-    private Display display;
+
     private Graphics2D graphics;
     private Thread gameThread;
     private Utils utils;
@@ -43,13 +33,11 @@ public class Game implements Runnable {
     private int userActionKey = 0;
     private boolean demoMode;
 
-    public Game(Display display) {
+    public Game() {
         this.isRunning = false;
         this.demoMode = true;
-        this.display = display;
-        this.display.createWindow();
-        this.utils = new Utils(display);
-        this.graphics = display.getGraphics();
+        this.utils = new Utils(getDisplay());
+        this.graphics = getDisplay().getGraphics();
         this.gameField = new GameField();
         this.applesObj = new Apples(this, FIELD_X_SIZE / 4, FIELD_Y_SIZE / 4);
         this.snake = new Snake(this, FIELD_X_SIZE / 2, FIELD_Y_SIZE / 2, applesObj);
@@ -68,9 +56,6 @@ public class Game implements Runnable {
         return this.utils;
     }
 
-    public Display getDisplay() {
-        return this.display;
-    }
 
     public synchronized void startGame() {
         if (isRunning) return;
@@ -80,8 +65,8 @@ public class Game implements Runnable {
         gameThread.start();
     }
 
-    synchronized void stopGame() {
-        if (!isRunning) return;
+    synchronized int stopGame() {
+        if (!isRunning) return 1;
 
         try {
             gameThread.join();
@@ -90,12 +75,10 @@ public class Game implements Runnable {
         } finally {
             this.isRunning = false;
             cleanUp();
+            return 0;
         }
     }
 
-    private void cleanUp() {
-        display.destroyWindow();
-    }
 
     /**
      * Обнуляем списки  игровых объектов и начинаем игру заново
@@ -118,13 +101,13 @@ public class Game implements Runnable {
      * Затем переключаем буфер и его содержимое показывается на экране.
      */
     private void doRender() {
-        display.clear();
+        getDisplay().clear();
 
         gameField.drawField(graphics);
         applesObj.drawApples();
         snake.drawSnake();
 
-        display.swapBuffers();
+        getDisplay().swapBuffers();
     }
 
     /**
@@ -208,7 +191,7 @@ public class Game implements Runnable {
             if (utils.getTime().isTimeToUpdateTitle()) {
                 String title = WINDOW_TITLE + " || fps:" + fps + "  | Upd: " + upd + "  | Loops: " + updateLoops +
                         " | " + snake.directionObj().getDirection();
-                display.setWindowTitle(title);
+                getDisplay().setWindowTitle(title);
                 utils.getTime().clearUpdateTitleTime();
                 upd = 0;
                 updateLoops = 0;
