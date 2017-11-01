@@ -96,7 +96,7 @@ public class Movement {
         boolean result = false;
 
         for (int snakeCell = 1; snakeCell < snakeCells.size() - 1; snakeCell++) {
-            if (snakeCells.get(0).compareTo(snakeCells.get(snakeCell)) == 0) {
+            if (snakeCells.get(0).equals(snakeCells.get(snakeCell))) {
                 log.info("Snake body found");
                 result = true;
                 break;
@@ -151,7 +151,7 @@ public class Movement {
         boolean result = false;
 
         for (Apple apple : applesObj.getApples()) {
-            if (snakeCells.get(0).compareTo(apple) == 0) {
+            if (snakeCells.get(0).hashCode() == apple.hashCode()) {
                 log.info("Apple found");
                 applesObj.getApples().remove(apple);
                 log.info("Apple removed");
