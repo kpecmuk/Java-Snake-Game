@@ -26,9 +26,9 @@ public class Game extends Setup implements Runnable {
     private final Utils utils;
     private boolean newUserAction = false;
 
-    private GameField gameField;
-    private Snake snake;
-    private Apples applesObj;
+    private final GameField gameField;
+    private final Snake snake;
+    private final Apples applesObj;
     private boolean needToMove = false;
     private int userActionKey = 0;
     private boolean demoMode;
@@ -49,7 +49,7 @@ public class Game extends Setup implements Runnable {
      */
     public static void increaseGameSpeed() {
         log.info("Game speed increased");
-        GAME_SPEED -= 3_000_000;
+        GAME_SPEED -= 3_500_000;
     }
 
     public final Utils getUtils() {
@@ -142,14 +142,14 @@ public class Game extends Setup implements Runnable {
     public final void run() {
         float delta = 0;
         int fps = 0, upd = 0, updateLoops = 0;
-        utils.getTime().clearUpdateTitleTime();                             // сброс счётчика обновления заголовка окна
-        utils.getTime().saveLastTime(utils.getTime().getSystemTime());      // устанавливаем текущее время
+        utils.getTime().clearUpdateTitleTime();     // сброс счётчика обновления заголовка окна
+        utils.getTime().saveLastTime(utils.getTime().getSystemTime()); // устанавливаем текущее время
 
         while (isRunning) {
-            utils.getTime().saveCurrentTime();              // сохраняем текущее время
-            utils.getTime().saveElapsedTime();              // вычистяем сколько времени прошло с последнего захода сюда
-            utils.getTime().saveLastTime(utils.getTime().loadCurrentTime());        // обновляем время последнего захода
-            utils.getTime().increaseUpdateTitleTime();      // накручиваем счётчик времени обновления заголовка
+            utils.getTime().saveCurrentTime();      // сохраняем текущее время
+            utils.getTime().saveElapsedTime();      // вычистяем сколько времени прошло с последнего захода сюда
+            utils.getTime().saveLastTime(utils.getTime().loadCurrentTime());// обновляем время последнего захода
+            utils.getTime().increaseUpdateTitleTime(); // накручиваем счётчик времени обновления заголовка
 
             boolean needRender = false;
             float UPDATE_INTERVAL = utils.getTime().getSecond() / UPDATE_RATE;
