@@ -88,24 +88,6 @@ public class Movement {
     }
 
     /**
-     * Проверяем на столкновение со змейкой
-     *
-     * @return true - если голова змейки нашла своё тело
-     */
-    public boolean snakeCellFound() {
-        boolean result = false;
-
-        for (int snakeCell = 1; snakeCell < snakeCells.size() - 1; snakeCell++) {
-            if (snakeCells.get(0).equals(snakeCells.get(snakeCell))) {
-                log.info("Snake body found");
-                result = true;
-                break;
-            }
-        }
-        return result;
-    }
-
-    /**
      * Проверяем можно ли двигаться вверх
      *
      * @return true если можно
@@ -142,6 +124,24 @@ public class Movement {
     }
 
     /**
+     * Проверяем на столкновение со змейкой
+     *
+     * @return true - если голова змейки нашла своё тело
+     */
+    public boolean isSnakeCellFound() {
+        boolean result = false;
+
+        for (int snakeCell = 1; snakeCell < snakeCells.size() - 1; snakeCell++) {
+            if (snakeCells.get(0).equals(snakeCells.get(snakeCell))) {
+                log.info("Snake body found");
+                result = true;
+                break;
+            }
+        }
+        return result;
+    }
+    
+    /**
      * Проверка не нашли ли яблоко.
      * Если нашли то удаляем, генерируем новое, ускоряемся
      *
@@ -151,7 +151,7 @@ public class Movement {
         boolean result = false;
 
         for (Apple apple : applesObj.getApples()) {
-            if (snakeCells.get(0).hashCode() == apple.hashCode()) {
+            if (snakeCells.get(0).equals(apple)) {
                 log.info("Apple found");
                 applesObj.getApples().remove(apple);
                 log.info("Apple removed");

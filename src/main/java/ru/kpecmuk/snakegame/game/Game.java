@@ -128,7 +128,7 @@ public class Game extends Setup implements Runnable {
             newUserAction = false;
             userActionKey = 0;
 
-            if ((!snake.getMovement().moveSnake() && !demoMode) || (snake.getMovement().snakeCellFound())) {
+            if ((!snake.getMovement().moveSnake() && !demoMode) || (snake.getMovement().isSnakeCellFound())) {
                 log.info("!!! GAME OVER !!!");
                 doGameOver();
             }

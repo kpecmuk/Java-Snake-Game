@@ -13,36 +13,20 @@ public class Coordinates implements GameObjects {
     private final int coordX;
     private final int coordY;
 
+    public final boolean equals(Coordinates o) {
+        return (this == o) || (o != null) && (coordX == o.coordX) && (coordY == o.coordY);
+    }
+
     Coordinates(int coordX, int coordY) {
         this.coordX = coordX;
         this.coordY = coordY;
     }
 
-    public int getCoordX() {
+    public final int getCoordX() {
         return this.coordX;
     }
 
-    public int getCoordY() {
+    public final int getCoordY() {
         return this.coordY;
-    }
-
-    /**
-     * Сравнение координат головы и координат яблока
-     */
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        Coordinates that = (Coordinates) o;
-
-        return coordX == that.coordX && coordY == that.coordY;
-    }
-
-    @Override
-    public int hashCode() {
-        int result = coordX;
-        result = 31 * result + coordY;
-        return result;
     }
 }

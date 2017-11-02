@@ -12,6 +12,10 @@ import org.slf4j.LoggerFactory;
 public class SnakeCell extends Coordinates {
     private static final Logger log = LoggerFactory.getLogger(SnakeCell.class);
 
+    /**
+     * @param coordX координата расположения ячейки по X
+     * @param coordY координата расположения ячейки по Y
+     */
     public SnakeCell(int coordX, int coordY) {
         super(coordX, coordY);
     }
