@@ -41,7 +41,7 @@ public class Game extends Setup implements Runnable {
         this.gameField = new GameField();
         this.applesObj = new Apples(this, FIELD_X_SIZE / 4, FIELD_Y_SIZE / 4);
         this.snake = new Snake(this, FIELD_X_SIZE / 2, FIELD_Y_SIZE / 2, applesObj);
-        this.snake.directionObj().setDirect(Direction.directions.UP);
+        this.snake.directionObj().setDirect(Direction.directions.LEFT);
     }
 
     /**

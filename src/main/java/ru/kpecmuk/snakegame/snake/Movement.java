@@ -47,9 +47,7 @@ public class Movement {
                 goRight();
                 result = false;
             }
-        }
-
-        if (direction.getDirection().equals(Direction.directions.DOWN)) {
+        } else if (direction.getDirection().equals(Direction.directions.DOWN)) {
             if (canIGoDown()) {
                 log.info("Moving DOWN");
                 goDown();
@@ -59,9 +57,7 @@ public class Movement {
                 goLeft();
                 result = false;
             }
-        }
-
-        if (direction.getDirection().equals(Direction.directions.RIGHT)) {
+        } else if (direction.getDirection().equals(Direction.directions.RIGHT)) {
             if (canIGoRight()) {
                 log.info("Moving RIGHT");
                 goRight();
@@ -71,9 +67,7 @@ public class Movement {
                 goDown();
                 result = false;
             }
-        }
-
-        if (direction.getDirection().equals(Direction.directions.LEFT)) {
+        } else if (direction.getDirection().equals(Direction.directions.LEFT)) {
             if (canIGoLeft()) {
                 log.info("Moving LEFT");
                 goLeft();
