@@ -13,13 +13,13 @@ public class Coordinates implements GameObjects {
     private final int coordX;
     private final int coordY;
 
-    public final boolean equals(Coordinates o) {
-        return (this == o) || (o != null) && (coordX == o.coordX) && (coordY == o.coordY);
-    }
-
     Coordinates(int coordX, int coordY) {
         this.coordX = coordX;
         this.coordY = coordY;
+    }
+
+    public final boolean equals(Coordinates o) {
+        return (this == o) || (o != null) && (coordX == o.coordX) && (coordY == o.coordY);
     }
 
     public final int getCoordX() {

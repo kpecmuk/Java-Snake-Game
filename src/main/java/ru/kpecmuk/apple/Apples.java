@@ -11,8 +11,6 @@ import java.awt.*;
 import java.util.ArrayList;
 import java.util.Random;
 
-import static ru.kpecmuk.snakegame.game.Game.*;
-
 /**
  * @author kpecmuk
  * @since 25.10.2017

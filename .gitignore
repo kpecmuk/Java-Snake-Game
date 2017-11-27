@@ -2,7 +2,6 @@
 .idea
 target
 test
-src/main/resources/
 
 # Mobile Tools for Java (J2ME)
 .mtj.tmp/

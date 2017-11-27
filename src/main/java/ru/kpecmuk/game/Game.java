@@ -19,16 +19,14 @@ public class Game extends Setup implements Runnable {
     private static final Logger log = LoggerFactory.getLogger(Game.class);
 
     public static long GAME_SPEED = 250_000_000L;
-    private boolean isRunning;
-
     private final Graphics2D graphics;
-    private Thread gameThread;
     private final Utils utils;
-    private boolean newUserAction = false;
-
     private final GameField gameField;
     private final Snake snake;
     private final Apples applesObj;
+    private boolean isRunning;
+    private Thread gameThread;
+    private boolean newUserAction = false;
     private boolean needToMove = false;
     private int userActionKey = 0;
     private boolean demoMode;

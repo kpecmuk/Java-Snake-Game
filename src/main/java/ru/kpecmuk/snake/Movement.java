@@ -8,7 +8,7 @@ import ru.kpecmuk.snakegame.gameobjects.SnakeCell;
 
 import java.util.ArrayList;
 
-import static ru.kpecmuk.snakegame.game.Game.*;
+import static ru.kpecmuk.snakegame.game.Game.increaseGameSpeed;
 
 /**
  * Движение змейки, проверка на столкновение с границами.
