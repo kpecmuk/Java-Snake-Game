@@ -1,9 +1,9 @@
-package ru.kpecmuk.snakegame.utils;
+package ru.kpecmuk.utils;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import static ru.kpecmuk.snakegame.game.Game.GAME_SPEED;
+import static ru.kpecmuk.game.Game.GAME_SPEED;
 
 /**
  * Системное время

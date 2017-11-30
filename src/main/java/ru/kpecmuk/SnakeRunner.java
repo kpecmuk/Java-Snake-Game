@@ -1,8 +1,8 @@
-package ru.kpecmuk.snakegame;
+package ru.kpecmuk;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import ru.kpecmuk.snakegame.game.Game;
+import ru.kpecmuk.game.Game;
 
 /**
  * Змейка

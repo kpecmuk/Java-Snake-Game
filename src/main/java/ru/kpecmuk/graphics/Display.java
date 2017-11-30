@@ -1,4 +1,4 @@
-package ru.kpecmuk.snakegame.graphics;
+package ru.kpecmuk.graphics;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

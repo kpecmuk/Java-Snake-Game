@@ -1,13 +1,13 @@
-package ru.kpecmuk.snakegame.game;
+package ru.kpecmuk.game;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import ru.kpecmuk.snakegame.apple.Apples;
-import ru.kpecmuk.snakegame.gameobjects.SnakeCell;
-import ru.kpecmuk.snakegame.graphics.GameField;
-import ru.kpecmuk.snakegame.snake.Direction;
-import ru.kpecmuk.snakegame.snake.Snake;
-import ru.kpecmuk.snakegame.utils.Utils;
+import ru.kpecmuk.apple.Apples;
+import ru.kpecmuk.gameobjects.SnakeCell;
+import ru.kpecmuk.graphics.GameField;
+import ru.kpecmuk.snake.Direction;
+import ru.kpecmuk.snake.Snake;
+import ru.kpecmuk.utils.Utils;
 
 import java.awt.*;
 

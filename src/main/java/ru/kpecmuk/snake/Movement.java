@@ -1,14 +1,16 @@
-package ru.kpecmuk.snakegame.snake;
+package ru.kpecmuk.snake;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import ru.kpecmuk.snakegame.apple.Apples;
-import ru.kpecmuk.snakegame.gameobjects.Apple;
-import ru.kpecmuk.snakegame.gameobjects.SnakeCell;
+import ru.kpecmuk.apple.Apples;
+import ru.kpecmuk.gameobjects.Apple;
+import ru.kpecmuk.gameobjects.SnakeCell;
 
 import java.util.ArrayList;
 
-import static ru.kpecmuk.snakegame.game.Game.increaseGameSpeed;
+import static ru.kpecmuk.game.Game.increaseGameSpeed;
+import static ru.kpecmuk.game.Setup.FIELD_X_SIZE;
+import static ru.kpecmuk.game.Setup.FIELD_Y_SIZE;
 
 /**
  * Движение змейки, проверка на столкновение с границами.
@@ -20,10 +22,10 @@ public class Movement {
     private static final Logger log = LoggerFactory.getLogger(Movement.class);
 
     private ArrayList<SnakeCell> snakeCells;
-    private Direction direction;
+    private ru.kpecmuk.snake.Direction direction;
     private Apples applesObj;
 
-    Movement(ArrayList<SnakeCell> snakeCells, Direction direction, Apples applesObj) {
+    Movement(ArrayList<SnakeCell> snakeCells, ru.kpecmuk.snake.Direction direction, Apples applesObj) {
         this.snakeCells = snakeCells;
         this.direction = direction;
         this.applesObj = applesObj;

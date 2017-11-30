@@ -1,4 +1,4 @@
-package ru.kpecmuk.snakegame.gameobjects;
+package ru.kpecmuk.gameobjects;
 
 /**
  * @author kpecmuk

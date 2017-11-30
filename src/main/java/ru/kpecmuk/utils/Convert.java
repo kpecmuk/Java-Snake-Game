@@ -1,9 +1,9 @@
-package ru.kpecmuk.snakegame.utils;
+package ru.kpecmuk.utils;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import static ru.kpecmuk.snakegame.game.Game.CELL_SIZE;
+import static ru.kpecmuk.game.Game.CELL_SIZE;
 
 /**
  * Конвертор

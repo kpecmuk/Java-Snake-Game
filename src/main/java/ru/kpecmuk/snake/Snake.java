@@ -1,16 +1,16 @@
-package ru.kpecmuk.snakegame.snake;
+package ru.kpecmuk.snake;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import ru.kpecmuk.snakegame.apple.Apples;
-import ru.kpecmuk.snakegame.game.Game;
-import ru.kpecmuk.snakegame.gameobjects.SnakeCell;
-import ru.kpecmuk.snakegame.utils.Utils;
+import ru.kpecmuk.apple.Apples;
+import ru.kpecmuk.game.Game;
+import ru.kpecmuk.gameobjects.SnakeCell;
+import ru.kpecmuk.utils.Utils;
 
 import java.awt.*;
 import java.util.ArrayList;
 
-import static ru.kpecmuk.snakegame.game.Game.CELL_SIZE;
+import static ru.kpecmuk.game.Game.CELL_SIZE;
 
 /**
  * Основной класс змейки, отрисовка

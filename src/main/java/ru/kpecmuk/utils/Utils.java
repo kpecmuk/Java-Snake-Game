@@ -1,8 +1,8 @@
-package ru.kpecmuk.snakegame.utils;
+package ru.kpecmuk.utils;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import ru.kpecmuk.snakegame.graphics.Display;
+import ru.kpecmuk.graphics.Display;
 
 /**
  * Сборник утилит: Time / Convert / UserInput доступно отсюда

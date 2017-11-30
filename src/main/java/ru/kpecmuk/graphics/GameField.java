@@ -1,12 +1,12 @@
-package ru.kpecmuk.snakegame.graphics;
+package ru.kpecmuk.graphics;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.awt.*;
 
-import static ru.kpecmuk.snakegame.game.Game.WINDOW_HEIGHT;
-import static ru.kpecmuk.snakegame.game.Game.WINDOW_WIDTH;
+import static ru.kpecmuk.game.Game.WINDOW_HEIGHT;
+import static ru.kpecmuk.game.Game.WINDOW_WIDTH;
 
 /**
  * Рисуем игровую сетку

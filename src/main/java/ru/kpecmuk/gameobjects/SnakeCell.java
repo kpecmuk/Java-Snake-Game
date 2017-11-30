@@ -1,4 +1,4 @@
-package ru.kpecmuk.snakegame.gameobjects;
+package ru.kpecmuk.gameobjects;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

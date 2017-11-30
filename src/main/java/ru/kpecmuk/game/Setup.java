@@ -1,8 +1,8 @@
-package ru.kpecmuk.snakegame.game;
+package ru.kpecmuk.game;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import ru.kpecmuk.snakegame.graphics.Display;
+import ru.kpecmuk.graphics.Display;
 
 /**
  * @author kpecmuk

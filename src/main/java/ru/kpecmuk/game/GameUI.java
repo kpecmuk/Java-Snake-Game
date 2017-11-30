@@ -1,4 +1,4 @@
-package ru.kpecmuk.snakegame.game;
+package ru.kpecmuk.game;
 
 /**
  * @author kpecmuk
